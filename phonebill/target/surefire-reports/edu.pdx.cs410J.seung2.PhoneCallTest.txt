@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.pdx.cs410J.seung2.PhoneCallTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.082 s - in edu.pdx.cs410J.seung2.PhoneCallTest
