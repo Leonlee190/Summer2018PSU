@@ -42,12 +42,7 @@ public class Project1 {
       checkInt(endTime, "ending Time");
       checkTime(endTime, "ending Time");
 
-      call.setCall(caller, 1);
-      call.setCall(callee, 0);
-      call.setDate(start, 1);
-      call.setTime(startTime, 1);
-      call.setDate(end, 0);
-      call.setTime(endTime, 0);
+      initCall(call, caller, callee, start, startTime, end, endTime);
 
       System.out.println("Caller: " + call.getCaller());
       System.out.println("Callee: " + call.getCallee());
@@ -116,5 +111,14 @@ public class Project1 {
       System.err.println("Incorrect " + name + " minute value!");
       System.exit(1);
     }
+  }
+
+  public static void initCall(PhoneCall call, String[] caller, String[] callee, String[] start, String[] startTime, String[] end, String[] endTime){
+    call.setCall(caller, 1);
+    call.setCall(callee, 0);
+    call.setDate(start, 1);
+    call.setTime(startTime, 1);
+    call.setDate(end, 0);
+    call.setTime(endTime, 0);
   }
 }
