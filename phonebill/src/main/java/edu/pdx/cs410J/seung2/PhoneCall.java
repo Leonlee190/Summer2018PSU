@@ -3,10 +3,10 @@ package edu.pdx.cs410J.seung2;
 import edu.pdx.cs410J.AbstractPhoneCall;
 
 public class PhoneCall extends AbstractPhoneCall {
-  private String caller;
-  private String callee;
-  private String startTime;
-  private String endTime;
+  private String caller = "not implemented";
+  private String callee = "not implemented";
+  private String startTime = "not implemented";
+  private String endTime = "not implemented";
 
   public void initCall(String[] Caller, String[] Callee, String[] sDate, String[] eDate, String[] sTime, String[] eTime){
     this.caller = Caller[0] + "-" + Caller[1] + "-" + Caller[2];

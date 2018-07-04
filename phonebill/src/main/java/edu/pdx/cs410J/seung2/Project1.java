@@ -12,43 +12,17 @@ public class Project1 {
     PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
     PhoneBill bill = new PhoneBill();
 
-    if(args[0].equals("-print") || args[0].equals("-PRINT")){
+    if((args[0].equals("-print") || args[0].equals("-PRINT")) && args.length == 1){
       System.out.println("Called Print");
     }
-    if(args[0].equals("-readme") || args[0].equals("-README")){
+    else if((args[0].equals("-print") || args[0].equals("-PRINT")) && args.length == 8){
+      parseInput(call, bill, args, 1);
+    }
+    else if(args[0].equals("-readme") || args[0].equals("-README")){
       System.out.println("Called README");
     }
     else if(args.length == 7){
-      String[] name = args[0].split(" ");
-      bill.setCustomer(name);
-
-      String[] caller = args[1].split("-");
-      checkInt(caller, "Caller");
-
-      String[] callee = args[2].split("-");
-      checkInt(callee, "Callee");
-
-      String[] start = args[3].split("/");
-      checkInt(start, "starting Date");
-      checkDate(start, "starting time's");
-
-      String[] startTime = args[4].split(":");
-      checkInt(startTime, "starting Time");
-      checkTime(startTime, "starting Time");
-
-      String[] end = args[5].split("/");
-      checkInt(end, "ending Date");
-      checkDate(start, "ending time's");
-
-      String[] endTime = args[6].split(":");
-      checkInt(endTime, "ending Time");
-      checkTime(endTime, "ending Time");
-
-      call.initCall(caller, callee, start, end, startTime, endTime);
-
-      bill.addPhoneCall(call);
-      System.out.println(bill.toString());
-      System.out.println(call.toString());
+      parseInput(call, bill, args, 0);
     }
     else{
       System.err.println("Incorrect command line argument");
@@ -112,5 +86,38 @@ public class Project1 {
       System.err.println("Incorrect " + name + " minute value!");
       System.exit(1);
     }
+  }
+
+  public static void parseInput(PhoneCall calling, PhoneBill billing, String[] args, int i){
+    String[] name = args[i].split(" ");
+    billing.setCustomer(name);
+
+    String[] caller = args[i+1].split("-");
+    checkInt(caller, "Caller");
+
+    String[] callee = args[i+2].split("-");
+    checkInt(callee, "Callee");
+
+    String[] start = args[i+3].split("/");
+    checkInt(start, "starting Date");
+    checkDate(start, "starting time's");
+
+    String[] startTime = args[i+4].split(":");
+    checkInt(startTime, "starting Time");
+    checkTime(startTime, "starting Time");
+
+    String[] end = args[i+5].split("/");
+    checkInt(end, "ending Date");
+    checkDate(start, "ending time's");
+
+    String[] endTime = args[i+6].split(":");
+    checkInt(endTime, "ending Time");
+    checkTime(endTime, "ending Time");
+
+    calling.initCall(caller, callee, start, end, startTime, endTime);
+
+    billing.addPhoneCall(calling);
+    System.out.println(billing.toString());
+    System.out.println(calling.toString());
   }
 }

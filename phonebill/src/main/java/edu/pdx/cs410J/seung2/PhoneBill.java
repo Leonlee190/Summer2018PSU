@@ -1,7 +1,6 @@
 package edu.pdx.cs410J.seung2;
 
 import edu.pdx.cs410J.AbstractPhoneBill;
-import edu.pdx.cs410J.AbstractPhoneCall;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +26,11 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
     @Override
     public void addPhoneCall(PhoneCall phoneCall) {
         boolean checker = this.calls.add(phoneCall);
+
+        if(!checker){
+            System.err.println("Adding phonecall to the phonebill was unsuccessful");
+            System.exit(1);
+        }
     }
 
     @Override
