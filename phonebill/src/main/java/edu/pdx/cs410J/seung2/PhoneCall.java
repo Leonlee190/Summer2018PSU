@@ -8,6 +8,32 @@ public class PhoneCall extends AbstractPhoneCall {
   private String startTime;
   private String endTime;
 
+  public void setCall(String[] args, int i){
+    if(i == 1) {
+      caller = args[0] + "-" + args[1] + "-" + args[2];
+    }
+    else{
+      callee = args[0] + "-" + args[1] + "-" + args[2];
+    }
+  }
+
+  public void setDate(String[] args, int i){
+    if(i == 1){
+      startTime = args[0] + "/" + args[1] + "/" + args[2];
+    }
+    else{
+      endTime = args[0] + "/" + args[1] + "/" + args[2];
+    }
+  }
+
+  public void setTime(String[] args, int i){
+    if(i == 1){
+      startTime += " " + args[0] + ":" + args[1];
+    }
+    else{
+      endTime += " " + args[0] + ":" + args[1];
+    }
+  }
   @Override
   public String getCaller() {
     return caller;

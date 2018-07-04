@@ -10,9 +10,6 @@ public class Project1 {
 
   public static void main(String[] args) {
     PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
-    for (String arg : args) {
-      System.out.println(arg);
-    }
 
     if(args[0].equals("-print") || args[0].equals("-PRINT")){
       System.out.println("Called Print");
@@ -44,6 +41,18 @@ public class Project1 {
       String[] endTime = args[6].split(":");
       checkInt(endTime, "ending Time");
       checkTime(endTime, "ending Time");
+
+      call.setCall(caller, 1);
+      call.setCall(callee, 0);
+      call.setDate(start, 1);
+      call.setTime(startTime, 1);
+      call.setDate(end, 0);
+      call.setTime(endTime, 0);
+
+      System.out.println("Caller: " + call.getCaller());
+      System.out.println("Callee: " + call.getCallee());
+      System.out.println("Start: " + call.getStartTimeString());
+      System.out.println("End: " + call.getEndTimeString());
     }
     else{
       System.err.println("Incorrect command line argument");
