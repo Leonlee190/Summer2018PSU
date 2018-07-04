@@ -10,6 +10,7 @@ public class Project1 {
 
   public static void main(String[] args) {
     PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
+    PhoneBill bill = new PhoneBill();
 
     if(args[0].equals("-print") || args[0].equals("-PRINT")){
       System.out.println("Called Print");
@@ -19,6 +20,7 @@ public class Project1 {
     }
     else if(args.length == 7){
       String[] name = args[0].split(" ");
+      bill.setCustomer(name);
 
       String[] caller = args[1].split("-");
       checkInt(caller, "Caller");
@@ -42,12 +44,11 @@ public class Project1 {
       checkInt(endTime, "ending Time");
       checkTime(endTime, "ending Time");
 
-      initCall(call, caller, callee, start, startTime, end, endTime);
+      call.initCall(caller, callee, start, end, startTime, endTime);
 
-      System.out.println("Caller: " + call.getCaller());
-      System.out.println("Callee: " + call.getCallee());
-      System.out.println("Start: " + call.getStartTimeString());
-      System.out.println("End: " + call.getEndTimeString());
+      bill.addPhoneCall(call);
+      System.out.println(bill.toString());
+      System.out.println(call.toString());
     }
     else{
       System.err.println("Incorrect command line argument");
@@ -111,14 +112,5 @@ public class Project1 {
       System.err.println("Incorrect " + name + " minute value!");
       System.exit(1);
     }
-  }
-
-  public static void initCall(PhoneCall call, String[] caller, String[] callee, String[] start, String[] startTime, String[] end, String[] endTime){
-    call.setCall(caller, 1);
-    call.setCall(callee, 0);
-    call.setDate(start, 1);
-    call.setTime(startTime, 1);
-    call.setDate(end, 0);
-    call.setTime(endTime, 0);
   }
 }
