@@ -3,24 +3,36 @@
 import edu.pdx.cs410J.AbstractPhoneCall;
 
 <span class="fc" id="L5">public class PhoneCall extends AbstractPhoneCall {</span>
+<span class="fc" id="L6">  private String caller = &quot;not implemented&quot;;</span>
+<span class="fc" id="L7">  private String callee = &quot;not implemented&quot;;</span>
+<span class="fc" id="L8">  private String startTime = &quot;not implemented&quot;;</span>
+<span class="fc" id="L9">  private String endTime = &quot;not implemented&quot;;</span>
+
+  public void initCall(String[] Caller, String[] Callee, String[] sDate, String[] eDate, String[] sTime, String[] eTime){
+<span class="fc" id="L12">    this.caller = Caller[0] + &quot;-&quot; + Caller[1] + &quot;-&quot; + Caller[2];</span>
+<span class="fc" id="L13">    this.callee = Callee[0] + &quot;-&quot; + Callee[1] + &quot;-&quot; + Callee[2];</span>
+<span class="fc" id="L14">    this.startTime = sDate[0] + &quot;/&quot; + sDate[1] + &quot;/&quot; + sDate[2] + &quot; &quot; + sTime[0] + &quot;:&quot; + sTime[1];</span>
+<span class="fc" id="L15">    this.endTime = eDate[0] + &quot;/&quot; + eDate[1] + &quot;/&quot; + eDate[2] + &quot; &quot; + eTime[0] + &quot;:&quot; + eTime[1];</span>
+<span class="fc" id="L16">  }</span>
+
   @Override
   public String getCaller() {
-<span class="nc" id="L8">    throw new UnsupportedOperationException(&quot;This method is not implemented yet&quot;);</span>
+<span class="fc" id="L20">    return this.caller;</span>
   }
 
   @Override
   public String getCallee() {
-<span class="nc" id="L13">    return &quot;This method is not implemented yet&quot;;</span>
+<span class="fc" id="L25">    return this.callee;</span>
   }
 
   @Override
   public String getStartTimeString() {
-<span class="nc" id="L18">    throw new UnsupportedOperationException(&quot;This method is not implemented yet&quot;);</span>
+<span class="fc" id="L30">    return this.startTime;</span>
   }
 
   @Override
   public String getEndTimeString() {
-<span class="nc" id="L23">    throw new UnsupportedOperationException(&quot;This method is not implemented yet&quot;);</span>
+<span class="fc" id="L35">    return this.endTime;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

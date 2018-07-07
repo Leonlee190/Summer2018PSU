@@ -97,8 +97,8 @@ public class Project1 {
    *      - Must be using "/" to separate the values
    *      - Month and Day needs to be 1 or 2 digits
    *      - Year needs to be 4 digits only
-   *      - 0 < Month < 13
-   *      - 0 < Day < 32
+   *      - Month needs to be between 1 and 12
+   *      - Day needs to be between 1 and 31
    *      - Should only have month, day, and year and no more
    *
    * @param args
@@ -152,8 +152,8 @@ public class Project1 {
    *      - Must be using ":" to separate the values
    *      - Hour and Min should be the only input
    *      - Hour and Min is 1 or 2 digits
-   *      - 0 <= Hour < 24
-   *      - 0 <= Min < 60
+   *      - Hour needs to be between 0 and 23
+   *      - Min needs to be between 0 and 59
    *
    * @param args
    *         String array split from the command line

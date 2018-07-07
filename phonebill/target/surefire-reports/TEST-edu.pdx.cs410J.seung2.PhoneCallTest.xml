@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.pdx.cs410J.seung2.PhoneCallTest" time="0.082" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.pdx.cs410J.seung2.PhoneCallTest" time="0.07" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="10"/>
     <property name="file.encoding.pkg" value="sun.io"/>
     <property name="sun.cpu.isalist" value=""/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/test-classes:/u/seung2/cs410j/Summer2018PSU/phonebill/target/classes:/u/seung2/.m2/repository/junit/junit/4.12/junit-4.12.jar:/u/seung2/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018.jar:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar:"/>
+    <property name="java.class.path" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/test-classes:/u/seung2/cs410j/Summer2018PSU/phonebill/target/classes:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018.jar:/u/seung2/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/u/seung2/.m2/repository/junit/junit/4.12/junit-4.12.jar:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar:"/>
     <property name="java.vm.vendor" value="&quot;Oracle Corporation&quot;"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
@@ -16,9 +16,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/pkgs/java/jdk-10.0.1/lib"/>
-    <property name="sun.java.command" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/surefire/surefirebooter9407066781523432238.jar /u/seung2/cs410j/Summer2018PSU/phonebill/target/surefire 2018-07-02T07-32-06_430-jvmRun1 surefire15236954120073198480tmp surefire_03044316286065297505tmp"/>
+    <property name="sun.java.command" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/surefire/surefirebooter15556615899338162535.jar /u/seung2/cs410j/Summer2018PSU/phonebill/target/surefire 2018-07-07T06-19-19_496-jvmRun1 surefire2494654832530272746tmp surefire_014826369414236295973tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/test-classes:/u/seung2/cs410j/Summer2018PSU/phonebill/target/classes:/u/seung2/.m2/repository/junit/junit/4.12/junit-4.12.jar:/u/seung2/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018.jar:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar:"/>
+    <property name="surefire.test.class.path" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/test-classes:/u/seung2/cs410j/Summer2018PSU/phonebill/target/classes:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018.jar:/u/seung2/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/u/seung2/.m2/repository/junit/junit/4.12/junit-4.12.jar:/u/seung2/.m2/repository/edu/pdx/cs410J/projects/Summer2018/projects-Summer2018-tests.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/u/seung2"/>
     <property name="user.language" value="en"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/surefire/surefirebooter9407066781523432238.jar"/>
+    <property name="surefire.real.class.path" value="/u/seung2/cs410j/Summer2018PSU/phonebill/target/surefire/surefirebooter15556615899338162535.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="10.0.1+10"/>
     <property name="user.name" value="seung2"/>

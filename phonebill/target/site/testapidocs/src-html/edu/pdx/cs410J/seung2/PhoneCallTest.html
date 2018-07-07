@@ -19,7 +19,7 @@
 <span class="sourceLineNo">010</span><a id="line.10"> */</a>
 <span class="sourceLineNo">011</span><a id="line.11">public class PhoneCallTest {</a>
 <span class="sourceLineNo">012</span><a id="line.12"></a>
-<span class="sourceLineNo">013</span><a id="line.13">  @Test(expected = UnsupportedOperationException.class)</a>
+<span class="sourceLineNo">013</span><a id="line.13">  @Test</a>
 <span class="sourceLineNo">014</span><a id="line.14">  public void getStartTimeStringNeedsToBeImplemented() {</a>
 <span class="sourceLineNo">015</span><a id="line.15">    PhoneCall call = new PhoneCall();</a>
 <span class="sourceLineNo">016</span><a id="line.16">    call.getStartTimeString();</a>
@@ -36,8 +36,7 @@
 <span class="sourceLineNo">027</span><a id="line.27">    PhoneCall call = new PhoneCall();</a>
 <span class="sourceLineNo">028</span><a id="line.28">    assertThat(call.getStartTime(), is(nullValue()));</a>
 <span class="sourceLineNo">029</span><a id="line.29">  }</a>
-<span class="sourceLineNo">030</span><a id="line.30">  </a>
-<span class="sourceLineNo">031</span><a id="line.31">}</a>
+<span class="sourceLineNo">030</span><a id="line.30">}</a>
 
 
 
