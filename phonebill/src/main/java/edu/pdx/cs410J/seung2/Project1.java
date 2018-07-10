@@ -7,13 +7,15 @@ import edu.pdx.cs410J.AbstractPhoneBill;
  * The main class for the CS410J Phone Bill Project
  */
 public class Project1 {
+  // README option printer
   public static String README = "\nCourse: CS 401J\nProject 1: Designing a Phone Bill Application\nProgrammer: SeungJun Lee" +
           "\nDescription: This project parses the user's command line arguments and initialize PhoneCall class and PhoneBill class or " +
-          "executes options given by the user.\n\nUsage: java edu.pdx.cs410J.<login-id>.Project1 [options] <args>\n\n" +
-          "Arguments are in this order:\n" +
-          "   - Customer\n   - Caller Number\n   - Callee Number\n   - Start Time\n   - End Time" +
-          "\n\nOptions:\n    -print : Prints a description of the new phone call" +
-          "\n    -README : Prints a README for this project and exits";
+          "executes options given by the user.\n             PhoneBill will store the customer's name and collection of PhoneCall data." +
+          "\n             PhoneCall will store caller and callee's number and starting and ending date and time.\n\nUsage: java edu.pdx.cs410J.<login-id>.Project1 [options] <args>\n\n" +
+          "Arguments are in this order: with example format\n" +
+          "   - Customer: \"First Last\" or \"First Middle Last\"\n   - Caller Number: XXX-XXX-XXXX\n   - Callee Number: XXX-XXX-XXXX\n   - Start Time: MM/DD/YYYY HH:MM\n   - End Time: MM/DD/YYYY HH:MM" +
+          "\n\nOptions:\n    -print : Prints a description of the new phone call\n          -> If no information has been provided with print function then it will print error" +
+          "\n    -README : Prints a README for this project and exits\n          -> Which you have currently!";
 
   public static void main(String[] args) {
     PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
@@ -22,6 +24,12 @@ public class Project1 {
     // If no command line argument
     if(args.length < 1){
       System.err.println("Missing command line arguments");
+      System.exit(1);
+    }
+
+    // If only print option is called without any initialization
+    if(args[0].equals("-print")  && args.length == 1){
+      System.err.println("No phone call information to print");
       System.exit(1);
     }
 

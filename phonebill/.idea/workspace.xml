@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Project1IT.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Project1IT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/seung2/Project1IT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2527">
-              <caret line="138" column="61" selection-start-line="138" selection-start-column="61" selection-end-line="138" selection-end-column="61" />
+            <state relative-caret-position="323">
+              <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
               <folding>
                 <element signature="e#531#532#0" expanded="true" />
                 <element signature="e#588#589#0" expanded="true" />
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Project1.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Project1.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Project1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1520">
-              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+            <state relative-caret-position="285">
+              <caret line="15" column="174" selection-start-line="15" selection-start-column="174" selection-end-line="15" selection-end-column="174" />
             </state>
           </provider>
         </entry>
@@ -128,14 +128,14 @@
       <list>
         <option value="$PROJECT_DIR$/src/test/java/edu/pdx/cs410J/seung2/PhoneCallTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/README" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Project1.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/PhoneBill.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/PhoneCall.java" />
         <option value="$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/seung2/Project1IT.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Project1.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="80" />
     <option name="width" value="1400" />
@@ -423,9 +423,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Project1IT_incorrectNumberForm - 2018.07.07 at 03h 36m 50s.xml">
-      <configuration name="Project1IT.incorrectNumberForm" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Project1IT_incorrectNumberForm - 2018.07.07 at 03h 38m 53s.xml">
       <configuration name="Project1IT.incorrectNumberForm" configurationId="JUnit" />
     </history-entry>
@@ -453,6 +450,9 @@
     <history-entry file="Project1IT - 2018.07.07 at 05h 58m 30s.xml">
       <configuration name="Project1IT" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Project1IT - 2018.07.10 at 04h 11m 18s.xml">
+      <configuration name="Project1IT" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -467,11 +467,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32851636" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32851636" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -822,13 +822,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/README" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Project1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1520">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/PhoneCall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -862,12 +855,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/it/java/edu/pdx/cs410J/seung2/Project1IT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2527">
-          <caret line="138" column="61" selection-start-line="138" selection-start-column="61" selection-end-line="138" selection-end-column="61" />
+        <state relative-caret-position="323">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
           <folding>
             <element signature="e#531#532#0" expanded="true" />
             <element signature="e#588#589#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Project1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="174" selection-start-line="15" selection-start-column="174" selection-end-line="15" selection-end-column="174" />
         </state>
       </provider>
     </entry>
