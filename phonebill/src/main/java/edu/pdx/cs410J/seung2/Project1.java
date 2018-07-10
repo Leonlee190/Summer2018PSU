@@ -11,7 +11,7 @@ public class Project1 {
           "\nDescription: This project parses the user's command line arguments and initialize PhoneCall class and PhoneBill class or " +
           "executes options given by the user.\n\nUsage: java edu.pdx.cs410J.<login-id>.Project1 [options] <args>\n\n" +
           "Arguments are in this order:\n" +
-          "   - Customer\n   -Caller Number\n   -Callee Number\n   -Start Time\n   -End Time" +
+          "   - Customer\n   - Caller Number\n   - Callee Number\n   - Start Time\n   - End Time" +
           "\n\nOptions:\n    -print : Prints a description of the new phone call" +
           "\n    -README : Prints a README for this project and exits";
 

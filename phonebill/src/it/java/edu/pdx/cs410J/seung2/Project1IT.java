@@ -29,6 +29,9 @@ public class Project1IT extends InvokeMainTestCase {
     assertThat(result.getTextWrittenToStandardError(), containsString("Missing command line arguments"));
   }
 
+    /**
+     * Tests that invoking the -README option corrrectly works
+     */
     @Test
     public void dashReadmeOptionPrintsOnlyReadme() {
         MainMethodResult result = invokeMain("-README");
@@ -37,6 +40,9 @@ public class Project1IT extends InvokeMainTestCase {
         assertThat(result.getTextWrittenToStandardError(), equalTo(""));
     }
 
+    /**
+     * Tests that invoking -print option with PhoneBill and PhoneCall information correctly initializes both
+     */
     @Test
     public void dashPrintOptionsPrintsNewlyCreatedPhoneCall() {
         String caller = "123-456-7890";
@@ -57,7 +63,6 @@ public class Project1IT extends InvokeMainTestCase {
 
     /**
      * Provided testing by the professor
-     * Edited line 80 from "\n" to "\r\n" because I'm using windows
      */
     @Test
     public void validCommandLineWithNoDashPrintOptionPrintsNothingToStandardOut() {
@@ -85,6 +90,7 @@ public class Project1IT extends InvokeMainTestCase {
      *  - Not using "-"
      *  - Incorrect input digits for month, date, and year
      *  - Non integer
+     *  - More than three input for date
      */
     @Test
     public void incorrectDateForm(){
@@ -130,7 +136,7 @@ public class Project1IT extends InvokeMainTestCase {
      * Testing caller/callee number formatting
      *  - Not using "-"
      *  - Non integer
-     *  - More input than needed
+     *  - Four dashes with information instead of three dashes
      */
     @Test
     public void incorrectNumberForm(){
