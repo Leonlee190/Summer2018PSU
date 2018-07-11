@@ -6,7 +6,7 @@ import edu.pdx.cs410J.AbstractPhoneBill;
 /**
  * The main class for the CS410J Phone Bill Project
  */
-public class Project1 {
+public class Project2 {
   // README option printer
   public static String README = "\nCourse: CS 401J\nProject 1: Designing a Phone Bill Application\nProgrammer: SeungJun Lee" +
           "\nDescription: This project parses the user's command line arguments and initialize PhoneCall class and PhoneBill class or " +
