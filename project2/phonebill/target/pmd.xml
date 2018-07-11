@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+    version="6.4.0" timestamp="2018-07-07T06:19:30.828">
+<file name="/u/seung2/cs410j/Summer2018PSU/phonebill/src/main/java/edu/pdx/cs410J/seung2/PhoneBill.java">
+<violation beginline="7" endline="7" begincolumn="1" endcolumn="26" rule="UnusedImports" ruleset="Best Practices" package="edu.pdx.cs410J.seung2" class="PhoneBill" externalInfoUrl="https://pmd.github.io/pmd-6.4.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'java.util.Iterator'
+</violation>
+</file>
+<file name="/u/seung2/cs410j/Summer2018PSU/phonebill/src/main/java/edu/pdx/cs410J/seung2/Project1.java">
+<violation beginline="3" endline="3" begincolumn="1" endcolumn="40" rule="UnusedImports" ruleset="Best Practices" package="edu.pdx.cs410J.seung2" class="Project1" externalInfoUrl="https://pmd.github.io/pmd-6.4.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'edu.pdx.cs410J.AbstractPhoneBill'
+</violation>
+<violation beginline="120" endline="120" begincolumn="9" endcolumn="28" rule="UselessParentheses" ruleset="Code Style" package="edu.pdx.cs410J.seung2" class="Project1" method="checkDate" externalInfoUrl="https://pmd.github.io/pmd-6.4.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+<violation beginline="120" endline="120" begincolumn="35" endcolumn="54" rule="UselessParentheses" ruleset="Code Style" package="edu.pdx.cs410J.seung2" class="Project1" method="checkDate" externalInfoUrl="https://pmd.github.io/pmd-6.4.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+<violation beginline="175" endline="175" begincolumn="9" endcolumn="28" rule="UselessParentheses" ruleset="Code Style" package="edu.pdx.cs410J.seung2" class="Project1" method="checkTime" externalInfoUrl="https://pmd.github.io/pmd-6.4.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+<violation beginline="175" endline="175" begincolumn="35" endcolumn="54" rule="UselessParentheses" ruleset="Code Style" package="edu.pdx.cs410J.seung2" class="Project1" method="checkTime" externalInfoUrl="https://pmd.github.io/pmd-6.4.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+</file>
+</pmd>
