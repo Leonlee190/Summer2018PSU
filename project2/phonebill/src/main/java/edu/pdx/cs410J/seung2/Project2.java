@@ -96,7 +96,7 @@ public class Project2 {
     for(String arg : args){
       boolean checker = isInt(arg);
 
-      if(checker == false){
+      if(!checker){
         System.err.println("Incorrect " + name + " integer value!");
         System.exit(1);
       }
@@ -220,7 +220,7 @@ public class Project2 {
     // Checks if it has "-" if not then error
     numFormat = args.contains("-");
 
-    if(numFormat == false){
+    if(!numFormat){
       System.err.println("Incorrect " + name + " number format");
       System.exit(1);
     }
@@ -248,7 +248,7 @@ public class Project2 {
     // Check if "/" is contained and if not then error
     dateFormat = args.contains("/");
 
-    if(dateFormat == false){
+    if(!dateFormat){
       System.err.println("Incorrect " + name + " date format");
       System.exit(1);
     }
@@ -268,7 +268,7 @@ public class Project2 {
     // Check if ":" is contained and if not then error
     timeFormat = args.contains(":");
 
-    if (timeFormat == false) {
+    if (!timeFormat) {
       System.err.println("Incorrect " + name + " time format");
       System.exit(1);
     }
