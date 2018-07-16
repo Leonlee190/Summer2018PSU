@@ -27,6 +27,10 @@ public class Project2 {
       System.exit(1);
     }
 
+    if(args[0].equals("-textFile") && args.length == 9){
+      parseInput(call, bill, args, 2);
+    }
+
     // If only print option is called without any initialization
     if(args[0].equals("-print")  && args.length == 1){
       System.err.println("No phone call information to print");
@@ -318,7 +322,7 @@ public class Project2 {
     // Split with "/" and check for ending date validity
     String[] end = args[i+5].split("/");
     checkInt(end, "ending date");
-    checkDate(start, args[i+5], "ending date's");
+    checkDate(end, args[i+5], "ending date's");
 
     // Split with ":" and check for ending time validity
     String[] endTime = args[i+6].split(":");

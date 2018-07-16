@@ -204,4 +204,27 @@ public class Project2IT extends InvokeMainTestCase {
         result = invokeMain("My Customer", caller, callee, startDate, startTime, endDate, endTime);
         assertThat(result.getExitCode(), equalTo(1));
     }
+
+    @Test
+    public void incorrectFileInput(){
+        String caller = "123-456-7890";
+        String callee = "234-567-8901";
+        String startDate = "07/04/2018";
+        String startTime = "6:24";
+        String endDate = "07/04/2018";
+        String endTime = "6:48";
+
+        MainMethodResult result =
+                invokeMain("-textFile", "leon.txt", "My Customer", caller, callee, startDate, startTime, endDate, endTime);
+        assertThat(result.getExitCode(), equalTo(0));
+
+        result = invokeMain("-textfile", "leon.txt", "My Customer", caller, callee, startDate, startTime, endDate, endTime);
+        assertThat(result.getExitCode(), equalTo(1));
+
+        result = invokeMain("-textFile", "hey.txt", "leon.txt", "My Customer", caller, callee, startDate, startTime, endDate, endTime);
+        assertThat(result.getExitCode(), equalTo(1));
+
+        result = invokeMain("-textFile", "My Customer", caller, callee, startDate, startTime, endDate, endTime);
+        assertThat(result.getExitCode(), equalTo(1));
+    }
 }
