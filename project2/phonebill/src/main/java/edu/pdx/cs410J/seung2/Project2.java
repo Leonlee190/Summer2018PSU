@@ -2,6 +2,9 @@ package edu.pdx.cs410J.seung2;
 
 import edu.pdx.cs410J.AbstractPhoneBill;
 
+import java.io.File;
+import java.io.IOException;
+
 
 /**
  * The main class for the CS410J Phone Bill Project
@@ -28,7 +31,31 @@ public class Project2 {
     }
 
     if(args[0].equals("-textFile") && args.length == 9){
+      String fileName = args[1];
+
+      try {
+        File fl = new File(fileName);
+
+        boolean checker = fl.createNewFile();
+
+        if(checker){
+          System.out.println("Created New");
+        }
+        else{
+          System.out.println("Already Exist");
+
+          if(fl.length() == 0){
+            System.out.println("Empty");
+          }
+        }
+      }catch(IOException e){
+        System.out.println("didn't work");
+      }
+
       parseInput(call, bill, args, 2);
+      addCalls(bill, call);
+
+      System.exit(0);
     }
 
     // If only print option is called without any initialization
@@ -40,6 +67,8 @@ public class Project2 {
     // If -print option with data is read
     if(args[0].equals("-print")  && args.length == 8){
       parseInput(call, bill, args, 1);
+      addCalls(bill, call);
+      System.exit(0);
     }
     // Only -readme option is called
     else if(args[0].equals("-README") && args.length == 1){
@@ -49,6 +78,8 @@ public class Project2 {
     // Just call data has been inputted
     else if(args.length == 7){
       parseInput(call, bill, args, 0);
+      addCalls(bill, call);
+      System.exit(0);
     }
     // Everything else returns error
     else{
@@ -331,14 +362,11 @@ public class Project2 {
 
     // Initialize PhoneCall class with verified command line input
     calling.initCall(caller, callee, start, end, startTime, endTime);
+  }
 
-    // Add initialized PhoneCall class to the PhoneBill class
-    billing.addPhoneCall(calling);
+  public static void addCalls(PhoneBill bills, PhoneCall calls){
+    bills.addPhoneCall(calls);
 
-    // Output with toString function
-    System.out.println(calling.toString());
-
-    // Exit
-    System.exit(0);
+    System.out.println(calls.toString());
   }
 }
