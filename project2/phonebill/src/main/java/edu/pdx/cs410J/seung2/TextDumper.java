@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class TextDumper implements PhoneBillDumper{
     private String fl;
@@ -25,12 +26,17 @@ public class TextDumper implements PhoneBillDumper{
 
         Collection<PhoneCall> calls = abstractPhoneBill.getPhoneCalls();
 
-        out.write(abstractPhoneBill.getCustomer());
+        Iterator<PhoneCall> iter = calls.iterator();
 
-        System.out.println(calls.iterator().next().getCaller());
-        System.out.println(calls.iterator().next().getCallee());
-        System.out.println(calls.iterator().next().getStartTimeString());
-        System.out.println(calls.iterator().next().getEndTimeString());
+        out.write(abstractPhoneBill.getCustomer() + "\r\n");
+
+        while(iter.hasNext()) {
+            PhoneCall obj = iter.next();
+            out.write(obj.getCaller() + "\r\n");
+            out.write(obj.getCallee() + "\r\n");
+            out.write(obj.getStartTimeString() + "\r\n");
+            out.write(obj.getEndTimeString() + "\r\n");
+        }
 
         out.close();
 

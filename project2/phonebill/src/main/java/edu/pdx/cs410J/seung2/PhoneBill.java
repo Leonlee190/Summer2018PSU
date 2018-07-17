@@ -11,7 +11,7 @@ import java.util.Iterator;
  */
 public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
     private String customer;                                        // Stores customer's name
-    private Collection<PhoneCall> calls = new ArrayList<>();        // Array list of PhoneCall classes
+    private Collection<PhoneCall> calls = new ArrayList<PhoneCall>();        // Array list of PhoneCall classes
 
     /**
      * Parses and sets the customer's name

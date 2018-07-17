@@ -1,6 +1,7 @@
 package edu.pdx.cs410J.seung2;
 
 import edu.pdx.cs410J.AbstractPhoneBill;
+import edu.pdx.cs410J.ParserException;
 import edu.pdx.cs410J.PhoneBillDumper;
 import edu.pdx.cs410J.PhoneBillParser;
 
@@ -36,6 +37,10 @@ public class Project2 {
 
     if(args[0].equals("-textFile") && args.length == 9){
       String fileName = args[1];
+      PhoneBill newBill = new PhoneBill();
+      PhoneCall newCall = new PhoneCall();
+
+      parseInput(newCall, newBill, args, 2);
 
       try {
         File fl = new File(fileName);
@@ -51,17 +56,45 @@ public class Project2 {
             dumper.dump(bill);
           }catch(IOException e){
             System.err.println("Creating new file and writing has failed");
+            System.exit(1);
           }
 
           System.exit(0);
         }
         else{
-          fl.delete();
           if(fl.length() == 0){
+            System.err.println("Nothing in the file. Invalid file.");
+            System.exit(1);
+          }
+
+          try {
+            parser.setFl(fileName);
+            AbstractPhoneBill getBill = parser.parse();
+            System.out.println(getBill.toString());
+
+            if(!getBill.getCustomer().equals(newBill.getCustomer())){
+              System.err.println("Input Phone Bill customer name does not match the file's customer name");
+              System.exit(1);
+            }
+
+            getBill.addPhoneCall(newCall);
+
+            try {
+              dumper.setFl(fileName);
+              dumper.dump(getBill);
+            }catch(IOException e){
+              System.err.println("Writing onto file failed after reading from " + fileName);
+              System.exit(1);
+            }
+
+          }catch(ParserException e){
+            System.err.println("Couldn't parse the " + fileName + " file");
+            System.exit(1);
           }
         }
       }catch(IOException e){
         System.err.println("File I/O has failed");
+        System.exit(1);
       }
 
       System.exit(0);
@@ -341,6 +374,41 @@ public class Project2 {
     String[] name = args[i].split(" ");
     billing.setCustomer(name);
 
+    // Split with "-" and check for caller number validity
+    String[] caller = args[i+1].split("-");
+    checkInt(caller, "caller");
+    checkNumberFormat(args[i+1], "caller");
+
+    // Split with "-" and check for callee number validity
+    String[] callee = args[i+2].split("-");
+    checkInt(callee, "callee");
+    checkNumberFormat(args[i+2], "callee");
+
+    // Split with "/" and check for starting date validity
+    String[] start = args[i+3].split("/");
+    checkInt(start, "starting date");
+    checkDate(start, args[i+3], "starting date's");
+
+    // Split with ":" and check for starting time validity
+    String[] startTime = args[i+4].split(":");
+    checkInt(startTime, "starting time");
+    checkTime(startTime, args[i+4], "starting time");
+
+    // Split with "/" and check for ending date validity
+    String[] end = args[i+5].split("/");
+    checkInt(end, "ending date");
+    checkDate(end, args[i+5], "ending date's");
+
+    // Split with ":" and check for ending time validity
+    String[] endTime = args[i+6].split(":");
+    checkInt(endTime, "ending time");
+    checkTime(endTime, args[i+6], "ending time");
+
+    // Initialize PhoneCall class with verified command line input
+    calling.initCall(caller, callee, start, end, startTime, endTime);
+  }
+
+  public static void callInput(PhoneCall calling, String[] args, int i){
     // Split with "-" and check for caller number validity
     String[] caller = args[i+1].split("-");
     checkInt(caller, "caller");
