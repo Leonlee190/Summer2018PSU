@@ -1,6 +1,8 @@
 package edu.pdx.cs410J.seung2;
 
 import edu.pdx.cs410J.AbstractPhoneBill;
+import edu.pdx.cs410J.PhoneBillDumper;
+import edu.pdx.cs410J.PhoneBillParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +25,8 @@ public class Project2 {
   public static void main(String[] args) {
     PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
     PhoneBill bill = new PhoneBill();  // PhoneBill class to contain customer name and PhoneCall data
+    TextDumper dumper = new TextDumper();
+    TextParser parser = new TextParser();
 
     // If no command line argument
     if(args.length < 1){
@@ -39,21 +43,26 @@ public class Project2 {
         boolean checker = fl.createNewFile();
 
         if(checker){
-          System.out.println("Created New");
+          try {
+            dumper.setFl(fileName);
+            parseInput(call, bill, args, 2);
+            addCalls(bill, call);
+
+            dumper.dump(bill);
+          }catch(IOException e){
+            System.err.println("Creating new file and writing has failed");
+          }
+
+          System.exit(0);
         }
         else{
-          System.out.println("Already Exist");
-
+          fl.delete();
           if(fl.length() == 0){
-            System.out.println("Empty");
           }
         }
       }catch(IOException e){
-        System.out.println("didn't work");
+        System.err.println("File I/O has failed");
       }
-
-      parseInput(call, bill, args, 2);
-      addCalls(bill, call);
 
       System.exit(0);
     }
@@ -68,6 +77,7 @@ public class Project2 {
     if(args[0].equals("-print")  && args.length == 8){
       parseInput(call, bill, args, 1);
       addCalls(bill, call);
+      System.out.println(call.toString());
       System.exit(0);
     }
     // Only -readme option is called
@@ -79,11 +89,12 @@ public class Project2 {
     else if(args.length == 7){
       parseInput(call, bill, args, 0);
       addCalls(bill, call);
+      System.out.println(call.toString());
       System.exit(0);
     }
     // Everything else returns error
     else{
-      System.err.println("Missing command line arguments");
+      System.err.println("Incorrect command line arguments");
       System.exit(1);
     }
 
@@ -366,7 +377,5 @@ public class Project2 {
 
   public static void addCalls(PhoneBill bills, PhoneCall calls){
     bills.addPhoneCall(calls);
-
-    System.out.println(calls.toString());
   }
 }
