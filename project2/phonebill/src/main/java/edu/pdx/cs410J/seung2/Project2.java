@@ -7,6 +7,8 @@ import edu.pdx.cs410J.PhoneBillParser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
 
 
 /**
@@ -76,6 +78,7 @@ public class Project2 {
               System.err.println("Input Phone Bill customer name does not match the file's customer name");
               System.exit(1);
             }
+            checkCallDupli(getBill.getPhoneCalls(), newCall);
 
             getBill.addPhoneCall(newCall);
 
@@ -445,5 +448,19 @@ public class Project2 {
 
   public static void addCalls(PhoneBill bills, PhoneCall calls){
     bills.addPhoneCall(calls);
+  }
+
+  public static void checkCallDupli(Collection<PhoneCall> calls, PhoneCall calling){
+    Iterator<PhoneCall> iter = calls.iterator();
+
+    while(iter.hasNext()){
+      PhoneCall obj = iter.next();
+      if(obj.getCaller().equals(calling.getCaller()) && obj.getCallee().equals(calling.getCallee()) && obj.getStartTimeString().equals(calling.getStartTimeString())){
+        if(obj.getEndTimeString().equals(calling.getEndTimeString())){
+          System.err.println("Inputted Phone Call already exists");
+          System.exit(1);
+        }
+      }
+    }
   }
 }
