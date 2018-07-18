@@ -10,16 +10,16 @@
   <groupId>edu.pdx.cs410J.seung2</groupId>
   <artifactId>phonebill</artifactId>
   <name>CS410J Phone Bill Project</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
   <description>A Phone Bill application for CS410J at Portland State University</description>
   <url>http://www.cs.pdx.edu/~whitlock</url>
   <inceptionYear>2000</inceptionYear>
   <developers>
     <developer>
-      <id>YOU</id>
-      <name>Your name here</name>
-      <email>you@youremail.com</email>
-      <url>http://www.cs.pdx.edu/~YOU</url>
+      <id>seung2</id>
+      <name>SeungJun Lee</name>
+      <email>seung2@pdx.edu</email>
+      <url>http://www.cs.pdx.edu/~seung2</url>
       <organization>PSU Department of Computer Science</organization>
       <organizationUrl>http://www.cs.pdx.edu</organizationUrl>
       <roles>
@@ -43,7 +43,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>edu.pdx.cs410J.seung2.Project1</mainClass>
+              <mainClass>edu.pdx.cs410J.seung2.Project2</mainClass>
             </manifest>
           </archive>
         </configuration>
