@@ -2,8 +2,6 @@ package edu.pdx.cs410J.seung2;
 
 import edu.pdx.cs410J.AbstractPhoneBill;
 import edu.pdx.cs410J.ParserException;
-import edu.pdx.cs410J.PhoneBillDumper;
-import edu.pdx.cs410J.PhoneBillParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,8 +26,8 @@ public class Project2 {
   public static void main(String[] args) {
     PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath
     PhoneBill bill = new PhoneBill();  // PhoneBill class to contain customer name and PhoneCall data
-    TextDumper dumper = new TextDumper();
-    TextParser parser = new TextParser();
+    TextDumper dumper = new TextDumper(); // TextDumper class for -textFile option
+    TextParser parser = new TextParser(); // TextParser class for -textFile option
 
     // If no command line argument
     if(args.length < 1){
@@ -37,69 +35,87 @@ public class Project2 {
       System.exit(1);
     }
 
+    // Only use -textFile option if it's "-textFile" spelling and with 8 arguments
     if(args[0].equals("-textFile") && args.length == 9){
+      // Check if the file name is correct
+      checkFilename(args[1]);
+
+      // Retrieve file name from the argument
       String fileName = args[1];
-      PhoneBill newBill = new PhoneBill();
-      PhoneCall newCall = new PhoneCall();
 
-      parseInput(newCall, newBill, args, 2);
+      // Initialize the PhoneBill and PhoneCall from command line argument
+      parseInput(call, bill, args, 2);
+      addCalls(bill, call);
 
+      // Within try and catch for IOException
       try {
+        // Open up the file
         File fl = new File(fileName);
 
+        // Create new file
         boolean checker = fl.createNewFile();
 
+        // If file didn't exist previously and has created new file
         if(checker){
           try {
+            // Pass in the file name to the TextDumper
             dumper.setFl(fileName);
-            parseInput(call, bill, args, 2);
-            addCalls(bill, call);
 
+            // Dump all the information onto the file
             dumper.dump(bill);
           }catch(IOException e){
+            // Catch the IOException thrown from the dump method
             System.err.println("Creating new file and writing has failed");
             System.exit(1);
           }
-
-          System.exit(0);
         }
+        // If the text file already exist with that name
         else{
+          // If the file exists but empty then error
           if(fl.length() == 0){
             System.err.println("Nothing in the file. Invalid file.");
             System.exit(1);
           }
 
           try {
+            // Set up the parser with the file name
             parser.setFl(fileName);
-            AbstractPhoneBill getBill = parser.parse();
-            System.out.println(getBill.toString());
 
-            if(!getBill.getCustomer().equals(newBill.getCustomer())){
+            // Retrieve the AbstractPhoneBill returned by file parsing
+            AbstractPhoneBill getBill = parser.parse();
+
+            // If text file's customer and command line's customer does not match then error
+            if(!getBill.getCustomer().equals(bill.getCustomer())){
               System.err.println("Input Phone Bill customer name does not match the file's customer name");
               System.exit(1);
             }
-            checkCallDupli(getBill.getPhoneCalls(), newCall);
 
-            getBill.addPhoneCall(newCall);
+            // Check if the command line's PhoneCall already exist
+            checkCallDupli(getBill.getPhoneCalls(), call);
 
+            // Add the command line's PhoneCall to the retrieved PhoneBill
+            getBill.addPhoneCall(call);
+
+            // Catch IOException because it's dump not parse
             try {
+              // Set up the dumper with the file name and dump
               dumper.setFl(fileName);
               dumper.dump(getBill);
             }catch(IOException e){
               System.err.println("Writing onto file failed after reading from " + fileName);
               System.exit(1);
             }
-
-          }catch(ParserException e){
+          }catch(ParserException e){          // If Parsing was invalid
             System.err.println("Couldn't parse the " + fileName + " file");
             System.exit(1);
           }
         }
-      }catch(IOException e){
+      }catch(IOException e){      // If initial file I/O was a failure
         System.err.println("File I/O has failed");
         System.exit(1);
       }
 
+      // Exit if all done
       System.exit(0);
     }
 
@@ -411,6 +427,18 @@ public class Project2 {
     calling.initCall(caller, callee, start, end, startTime, endTime);
   }
 
+  /**
+   * Initialize PhoneCall with arguments and checks for its validity
+   *
+   * @param calling
+   *         PhoneCall for initializing
+   *
+   * @param args
+   *         String array of PhoneCall information
+   *
+   * @param i
+   *         Buffer for the index
+   */
   public static void callInput(PhoneCall calling, String[] args, int i){
     // Split with "-" and check for caller number validity
     String[] caller = args[i+1].split("-");
@@ -446,21 +474,56 @@ public class Project2 {
     calling.initCall(caller, callee, start, end, startTime, endTime);
   }
 
+  /**
+   * Adding single PhoneCall to PhoneBill's collection of PhoneCall
+   *
+   * @param bills
+   *         PhoneBill class object that holds the collection of PhoneCall
+   *
+   * @param calls
+   *         Single PhoneCall that's going to be added
+   */
   public static void addCalls(PhoneBill bills, PhoneCall calls){
     bills.addPhoneCall(calls);
   }
 
-  public static void checkCallDupli(Collection<PhoneCall> calls, PhoneCall calling){
-    Iterator<PhoneCall> iter = calls.iterator();
 
+  /**
+   * Check if the command line fed PhoneCall information already exists in the PhoneBill class
+   *
+   * @param calls
+   *         Collection of PhoneCall in PhoneBill
+   *
+   * @param calling
+   *         PhoneCall initialized from command line argument
+   */
+  public static void checkCallDupli(Collection<PhoneCall> calls, PhoneCall calling){
+    Iterator<PhoneCall> iter = calls.iterator();      // Set up Iterator to go through all the PhoneCalls
+
+    // Keep going until no object is left
     while(iter.hasNext()){
       PhoneCall obj = iter.next();
+
+      // If current iteration of PhoneCall is exactly same as PhoneCall from command line, then send out error
       if(obj.getCaller().equals(calling.getCaller()) && obj.getCallee().equals(calling.getCallee()) && obj.getStartTimeString().equals(calling.getStartTimeString())){
         if(obj.getEndTimeString().equals(calling.getEndTimeString())){
           System.err.println("Inputted Phone Call already exists");
           System.exit(1);
         }
       }
+    }
+  }
+
+  /**
+   * Checks if the file has .txt extension and if not then return error
+   *
+   * @param fileName
+   *         File name passed in from command line arugment
+   */
+  public static void checkFilename(String fileName){
+    if(!fileName.endsWith(".txt")){
+      System.err.println("Incorrect File Name. Does not contain .txt format");
+      System.exit(1);
     }
   }
 }
