@@ -15,7 +15,7 @@ public class AboutConditionals {
         if (true) {
             x++;
         }
-        assertEquals(x, 2);
+        assertEquals(x, __);
     }
 
     @Koan
@@ -27,7 +27,7 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, 0);
+        assertEquals(x, __);
     }
 
     @Koan
@@ -42,7 +42,7 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, 10);
+        assertEquals(x, __);
     }
 
     @Koan
@@ -58,7 +58,7 @@ public class AboutConditionals {
         else
             x--;
         // ...but they are recommended.
-        assertEquals(x, 10);
+        assertEquals(x, __);
     }
 
     @Koan
@@ -76,7 +76,7 @@ public class AboutConditionals {
         } else {
             x--;
         }
-        assertEquals(x, 0);
+        assertEquals(x, __);
     }
 
     @Koan
@@ -93,7 +93,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, "Basic One");
+        assertEquals(result, __);
     }
 
     @Koan
@@ -108,7 +108,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, "Basic OneTwoNothing");
+        assertEquals(result, __);
     }
 
     @Koan
@@ -123,7 +123,7 @@ public class AboutConditionals {
             case 2:
                 result += "Two";
         }
-        assertEquals(result, "Basic NothingTwo");
+        assertEquals(result, __);
     }
 
     @Koan
@@ -140,7 +140,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, "Basic Nothing");
+        assertEquals(result, __);
     }
 
     @Koan
@@ -157,7 +157,7 @@ public class AboutConditionals {
             default:
                 result += "Nothing";
         }
-        assertEquals(result, "Basic One");
+        assertEquals(result, __);
     }
 
     @Koan
@@ -168,9 +168,9 @@ public class AboutConditionals {
         if (trueCount.count() || falseCount.count()) {
             x = "kthxbai";
         }
-        assertEquals(x, "kthxbai");
-        assertEquals(trueCount.count, 1);
-        assertEquals(falseCount.count, 0);
+        assertEquals(x, __);
+        assertEquals(trueCount.count, __);
+        assertEquals(falseCount.count, __);
     }
     
     @Koan
@@ -181,9 +181,9 @@ public class AboutConditionals {
         if (trueCount.count() | falseCount.count()) {
             x = "kthxbai";
         }
-        assertEquals(x, "kthxbai");
-        assertEquals(trueCount.count, 1);
-        assertEquals(falseCount.count, 1);
+        assertEquals(x, __);
+        assertEquals(trueCount.count, __);
+        assertEquals(falseCount.count, __);
     }
     
     class Counter {
