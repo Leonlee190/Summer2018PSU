@@ -68,6 +68,7 @@ public class Project2 {
             System.err.println("Creating new file and writing has failed");
             System.exit(1);
           }
+          System.exit(0);
         }
         // If the text file already exist with that name
         else{
@@ -109,6 +110,7 @@ public class Project2 {
             System.err.println("Couldn't parse the " + fileName + " file");
             System.exit(1);
           }
+          System.exit(0);
         }
       }catch(IOException e){      // If initial file I/O was a failure
         System.err.println("File I/O has failed");
@@ -146,7 +148,7 @@ public class Project2 {
     }
     // Everything else returns error
     else{
-      System.err.println("Incorrect command line arguments");
+      System.err.println("Missing command line arguments");
       System.exit(1);
     }
 

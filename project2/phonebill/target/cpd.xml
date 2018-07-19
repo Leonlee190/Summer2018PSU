@@ -1,2 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd-cpd/>
+<pmd-cpd>
+   <duplication lines="46" tokens="226">
+      <file line="399"
+            path="/u/seung2/cs410j/Summer2018PSU/project2/phonebill/src/main/java/edu/pdx/cs410J/seung2/Project2.java"/>
+      <file line="446"
+            path="/u/seung2/cs410j/Summer2018PSU/project2/phonebill/src/main/java/edu/pdx/cs410J/seung2/Project2.java"/>
+      <codefragment><![CDATA[    String[] caller = args[i+1].split("-");
+    checkInt(caller, "caller");
+    checkNumberFormat(args[i+1], "caller");
+
+    // Split with "-" and check for callee number validity
+    String[] callee = args[i+2].split("-");
+    checkInt(callee, "callee");
+    checkNumberFormat(args[i+2], "callee");
+
+    // Split with "/" and check for starting date validity
+    String[] start = args[i+3].split("/");
+    checkInt(start, "starting date");
+    checkDate(start, args[i+3], "starting date's");
+
+    // Split with ":" and check for starting time validity
+    String[] startTime = args[i+4].split(":");
+    checkInt(startTime, "starting time");
+    checkTime(startTime, args[i+4], "starting time");
+
+    // Split with "/" and check for ending date validity
+    String[] end = args[i+5].split("/");
+    checkInt(end, "ending date");
+    checkDate(end, args[i+5], "ending date's");
+
+    // Split with ":" and check for ending time validity
+    String[] endTime = args[i+6].split(":");
+    checkInt(endTime, "ending time");
+    checkTime(endTime, args[i+6], "ending time");
+
+    // Initialize PhoneCall class with verified command line input
+    calling.initCall(caller, callee, start, end, startTime, endTime);
+  }
+
+  /**
+   * Initialize PhoneCall with arguments and checks for its validity
+   *
+   * @param calling
+   *         PhoneCall for initializing
+   *
+   * @param args
+   *         String array of PhoneCall information
+   *
+   * @param i
+   *         Buffer for the index
+   */
+  public static void callInput(PhoneCall calling, String[] args, int i){]]></codefragment>
+   </duplication>
+</pmd-cpd>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TextDumper.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CS410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.seung2</a> &gt; <span class="el_source">TextDumper.java</span></div><h1>TextDumper.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.seung2;
+
+import edu.pdx.cs410J.AbstractPhoneBill;
+import edu.pdx.cs410J.PhoneBillDumper;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
+
+
+/**
+ * Takes in an AbstractPhoneBill and write down all the PhoneBill and collection of PhoneCall information onto text file.
+ */
+<span class="fc" id="L17">public class TextDumper implements PhoneBillDumper{</span>
+    private String fl;
+
+    /**
+     * Setting the file name to write on it
+     *
+     * @param fileName
+     *         File name passed on from command line argument
+     */
+    public void setFl(String fileName){
+<span class="fc" id="L27">        fl = fileName;</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Open up the file and write all the PhoneBill and PhoneCall data onto that file
+     *
+     * @param abstractPhoneBill
+     *         PhoneBill and collection of PhoneCall information.
+     *
+     * @throws IOException
+     *           If writing on the file was not valid then throw IOException
+     */
+    @Override
+    public void dump(AbstractPhoneBill abstractPhoneBill) throws IOException {
+<span class="fc" id="L41">        File f = new File(fl);                          // Open up the file</span>
+<span class="fc" id="L42">        FileWriter fw = new FileWriter(f);              // Prep for writer</span>
+<span class="fc" id="L43">        BufferedWriter out = new BufferedWriter(fw);    // Set up the BufferedWriter</span>
+
+        // Retrieve the Collection of PhoneCall
+<span class="fc" id="L46">        Collection&lt;PhoneCall&gt; calls = abstractPhoneBill.getPhoneCalls();</span>
+
+        // Use Iterator with PhoneCall object to go through the ArrayList
+<span class="fc" id="L49">        Iterator&lt;PhoneCall&gt; iter = calls.iterator();</span>
+
+        // Write the customer's name on the top of the file
+<span class="fc" id="L52">        out.write(abstractPhoneBill.getCustomer() + &quot;\n&quot;);</span>
+
+        // Iterate through the list
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        while(iter.hasNext()) {</span>
+            // Set up the object to get it's information
+<span class="fc" id="L57">            PhoneCall obj = iter.next();</span>
+
+            // Write out the caller, callee, start time, end time
+<span class="fc" id="L60">            out.write(obj.getCaller() + &quot;\n&quot;);</span>
+<span class="fc" id="L61">            out.write(obj.getCallee() + &quot;\n&quot;);</span>
+<span class="fc" id="L62">            out.write(obj.getStartTimeString() + &quot;\n&quot;);</span>
+<span class="fc" id="L63">            out.write(obj.getEndTimeString() + &quot;\n&quot;);</span>
+<span class="fc" id="L64">        }</span>
+
+        // Close the file
+<span class="fc" id="L67">        out.close();</span>
+<span class="fc" id="L68">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

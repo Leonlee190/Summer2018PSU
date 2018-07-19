@@ -11,7 +11,7 @@ import java.util.Iterator;
  */
 <span class="fc" id="L12">public class PhoneBill extends AbstractPhoneBill&lt;PhoneCall&gt; {</span>
     private String customer;                                        // Stores customer's name
-<span class="fc" id="L14">    private Collection&lt;PhoneCall&gt; calls = new ArrayList&lt;&gt;();        // Array list of PhoneCall classes</span>
+<span class="fc" id="L14">    private Collection&lt;PhoneCall&gt; calls = new ArrayList&lt;PhoneCall&gt;();        // Array list of PhoneCall classes</span>
 
     /**
      * Parses and sets the customer's name
@@ -37,7 +37,7 @@ import java.util.Iterator;
      */
     @Override
     public String getCustomer() {
-<span class="nc" id="L40">        return this.customer;</span>
+<span class="fc" id="L40">        return this.customer;</span>
     }
 
     /**
@@ -66,7 +66,7 @@ import java.util.Iterator;
      */
     @Override
     public Collection&lt;PhoneCall&gt; getPhoneCalls() {
-<span class="nc" id="L69">        return this.calls;</span>
+<span class="fc" id="L69">        return this.calls;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
