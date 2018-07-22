@@ -4,24 +4,11 @@
     <list default="true" id="6b63f784-d9e5-491c-be76-e9cebecf67a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/file_hashes.dat" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/file_hashes.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutArrays.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutArrays.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutBitwiseOperators.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutBitwiseOperators.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutCasting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutCasting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutConstructors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutConstructors.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutEnums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutInheritance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutInheritance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutMethodPreference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutMethodPreference.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/beginner/AboutVarArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/beginner/AboutVarArgs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutAutoboxing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutAutoboxing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutCollections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutCollections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutComparison.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutComparison.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutDates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutDates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutEquality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutEquality.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutFileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutFileIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutInnerClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutInnerClasses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project2/phonebill/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project2/phonebill/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/advanced/AboutMocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/advanced/AboutMocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutLocale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutLocale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutRegularExpressions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutRegularExpressions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intermediate/AboutSerialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intermediate/AboutSerialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java7/AboutJava7LiteralsEnhancements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java7/AboutJava7LiteralsEnhancements.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,115 +20,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AboutArrays.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/beginner/AboutArrays.java">
+      <file leaf-file-name="AboutLocale.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutLocale.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
-              <folding>
-                <element signature="e#2242#2269#1" expanded="true" />
-                <element signature="e#2429#2430#0" expanded="true" />
-                <element signature="e#2480#2481#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="330">
+              <caret line="47" column="52" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutVarArgs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/beginner/AboutVarArgs.java">
+      <file leaf-file-name="AboutRegularExpressions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutRegularExpressions.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="47" column="150" selection-start-line="47" selection-start-column="150" selection-end-line="47" selection-end-column="150" />
-              <folding>
-                <element signature="e#996#997#0" expanded="true" />
-                <element signature="e#1077#1078#0" expanded="true" />
-                <element signature="e#1362#1363#0" expanded="true" />
-                <element signature="e#1426#1427#0" expanded="true" />
-              </folding>
+              <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutAutoboxing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutAutoboxing.java">
+      <file leaf-file-name="AboutSerialization.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutSerialization.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+            <state relative-caret-position="-50">
+              <caret line="201" column="45" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutCollections.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutCollections.java">
+      <file leaf-file-name="AboutMocks.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/advanced/AboutMocks.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="111" column="24" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
+            <state relative-caret-position="247">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutComparison.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutComparison.java">
+      <file leaf-file-name="AboutJava7LiteralsEnhancements.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java7/AboutJava7LiteralsEnhancements.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="80" column="36" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AboutDates.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutDates.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
-              <folding>
-                <element signature="e#435#436#0" expanded="true" />
-                <element signature="e#484#485#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AboutEquality.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutEquality.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="135" column="68" selection-start-line="135" selection-start-column="68" selection-end-line="135" selection-end-column="68" />
-              <folding>
-                <element signature="e#678#679#0" expanded="true" />
-                <element signature="e#737#738#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AboutFileIO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutFileIO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AboutInnerClasses.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/intermediate/AboutInnerClasses.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="146" column="51" selection-start-line="146" selection-start-column="51" selection-end-line="146" selection-end-column="51" />
-              <folding>
-                <element signature="e#2391#2392#0" expanded="true" />
-                <element signature="e#2434#2435#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AboutBitwiseOperators.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/beginner/AboutBitwiseOperators.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
+            <state relative-caret-position="190">
+              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -179,6 +98,11 @@
         <option value="$PROJECT_DIR$/src/intermediate/AboutEquality.java" />
         <option value="$PROJECT_DIR$/src/intermediate/AboutFileIO.java" />
         <option value="$PROJECT_DIR$/src/intermediate/AboutInnerClasses.java" />
+        <option value="$PROJECT_DIR$/src/intermediate/AboutLocale.java" />
+        <option value="$PROJECT_DIR$/src/intermediate/AboutRegularExpressions.java" />
+        <option value="$PROJECT_DIR$/src/intermediate/AboutSerialization.java" />
+        <option value="$PROJECT_DIR$/src/advanced/AboutMocks.java" />
+        <option value="$PROJECT_DIR$/src/java7/AboutJava7LiteralsEnhancements.java" />
       </list>
     </option>
   </component>
@@ -193,8 +117,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -236,18 +160,6 @@
               <item name="koans" type="b2602c69:ProjectViewProjectNode" />
               <item name="koans" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="advanced" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="koans" type="b2602c69:ProjectViewProjectNode" />
-              <item name="koans" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="intermediate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="koans" type="b2602c69:ProjectViewProjectNode" />
-              <item name="koans" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="java7" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -260,8 +172,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -362,8 +274,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -374,11 +285,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32897604" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32995737" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37444934" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3740458" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29102844" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14498934" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -398,44 +309,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/beginner/AboutArithmeticOperators.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/beginner/AboutConditionals.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3515">
-          <caret line="185" column="39" selection-start-line="185" selection-start-column="39" selection-end-line="185" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/beginner/AboutLoops.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3135">
-          <caret line="165" column="28" selection-start-line="165" selection-start-column="28" selection-end-line="165" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/beginner/AboutPrimitives.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3097">
-          <caret line="196" column="40" selection-start-line="196" selection-start-column="40" selection-end-line="196" selection-end-column="40" />
-          <folding>
-            <element signature="e#249#250#0" expanded="true" />
-            <element signature="e#319#320#0" expanded="true" />
-            <element signature="e#3847#3848#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#5375#5376#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/beginner/AboutArrays.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -468,10 +341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
-          <folding>
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -479,13 +348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
           <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
-          <folding>
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#1133#1263#0" expanded="true" />
-            <element signature="e#1262#1263#0" expanded="true" />
-            <element signature="e#1573#1583#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -493,9 +355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -517,13 +376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3097">
           <caret line="196" column="40" selection-start-line="196" selection-start-column="40" selection-end-line="196" selection-end-column="40" />
-          <folding>
-            <element signature="e#249#250#0" expanded="true" />
-            <element signature="e#319#320#0" expanded="true" />
-            <element signature="e#3847#3848#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#5375#5376#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -559,10 +411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
-          <folding>
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -570,13 +418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
           <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
-          <folding>
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#1133#1263#0" expanded="true" />
-            <element signature="e#1262#1263#0" expanded="true" />
-            <element signature="e#1573#1583#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -591,13 +432,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/advanced/AboutMocks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor" />
@@ -627,10 +461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="15" column="70" selection-start-line="15" selection-start-column="70" selection-end-line="15" selection-end-column="70" />
-          <folding>
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -638,9 +468,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -662,13 +489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3097">
           <caret line="196" column="40" selection-start-line="196" selection-start-column="40" selection-end-line="196" selection-end-column="40" />
-          <folding>
-            <element signature="e#249#250#0" expanded="true" />
-            <element signature="e#319#320#0" expanded="true" />
-            <element signature="e#3847#3848#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#5375#5376#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,13 +496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-          <folding>
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#1133#1263#0" expanded="true" />
-            <element signature="e#1262#1263#0" expanded="true" />
-            <element signature="e#1573#1583#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -704,16 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
           <caret line="53" column="47" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-          <folding>
-            <element signature="e#462#463#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-            <element signature="e#586#587#0" expanded="true" />
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#697#698#0" expanded="true" />
-            <element signature="e#881#882#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -728,9 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="157" column="24" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="24" />
-          <folding>
-            <element signature="e#1742#1770#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -738,12 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
           <caret line="60" column="71" selection-start-line="60" selection-start-column="71" selection-end-line="60" selection-end-column="71" />
-          <folding>
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-            <element signature="e#705#706#0" expanded="true" />
-            <element signature="e#774#775#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -756,87 +550,109 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/beginner/AboutArrays.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
+        <state relative-caret-position="1178">
           <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
-          <folding>
-            <element signature="e#2242#2269#1" expanded="true" />
-            <element signature="e#2429#2430#0" expanded="true" />
-            <element signature="e#2480#2481#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/beginner/AboutVarArgs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="646">
           <caret line="47" column="150" selection-start-line="47" selection-start-column="150" selection-end-line="47" selection-end-column="150" />
           <folding>
             <element signature="e#996#997#0" expanded="true" />
-            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#1079#1080#0" expanded="true" />
             <element signature="e#1362#1363#0" expanded="true" />
-            <element signature="e#1426#1427#0" expanded="true" />
+            <element signature="e#1425#1426#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/intermediate/AboutAutoboxing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="798">
           <caret line="48" column="51" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/intermediate/AboutCollections.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="2014">
           <caret line="111" column="24" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/intermediate/AboutComparison.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="1254">
           <caret line="80" column="36" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/intermediate/AboutDates.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state relative-caret-position="1140">
           <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
           <folding>
             <element signature="e#435#436#0" expanded="true" />
-            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#512#513#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/intermediate/AboutEquality.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="2432">
           <caret line="135" column="68" selection-start-line="135" selection-start-column="68" selection-end-line="135" selection-end-column="68" />
-          <folding>
-            <element signature="e#678#679#0" expanded="true" />
-            <element signature="e#737#738#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/intermediate/AboutFileIO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state relative-caret-position="1862">
           <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/intermediate/AboutInnerClasses.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state relative-caret-position="2375">
           <caret line="146" column="51" selection-start-line="146" selection-start-column="51" selection-end-line="146" selection-end-column="51" />
-          <folding>
-            <element signature="e#2391#2392#0" expanded="true" />
-            <element signature="e#2434#2435#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/intermediate/AboutLocale.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="47" column="52" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/intermediate/AboutRegularExpressions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/intermediate/AboutSerialization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="201" column="45" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/advanced/AboutMocks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java7/AboutJava7LiteralsEnhancements.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
         </state>
       </provider>
     </entry>

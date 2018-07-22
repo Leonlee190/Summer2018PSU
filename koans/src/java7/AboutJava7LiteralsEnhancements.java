@@ -11,7 +11,7 @@ public class AboutJava7LiteralsEnhancements {
     public void binaryLiterals() {
         //binary literals are marked with 0b prefix
         short binaryLiteral = 0b1111;
-        assertEquals(binaryLiteral, __);
+        assertEquals(binaryLiteral, 15);
     }
 
     @Koan
