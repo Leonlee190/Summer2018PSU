@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Project1.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CS410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.seung2</a> &gt; <span class="el_source">Project1.java</span></div><h1>Project1.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.seung2;
+
+import edu.pdx.cs410J.AbstractPhoneBill;
+
+
+/**
+ * The main class for the CS410J Phone Bill Project
+ */
+<span class="nc" id="L9">public class Project1 {</span>
+  // README option printer
+<span class="fc" id="L11">  public static String README = &quot;\nCourse: CS 401J\nProject 1: Designing a Phone Bill Application\nProgrammer: SeungJun Lee&quot; +</span>
+          &quot;\nDescription: This project parses the user's command line arguments and initialize PhoneCall class and PhoneBill class or &quot; +
+          &quot;executes options given by the user.\n             PhoneBill will store the customer's name and collection of PhoneCall data.&quot; +
+          &quot;\n             PhoneCall will store caller and callee's number and starting and ending date and time.\n\nUsage: java edu.pdx.cs410J.&lt;login-id&gt;.Project1 [options] &lt;args&gt;\n\n&quot; +
+          &quot;Arguments are in this order: with example format\n&quot; +
+          &quot;   - Customer: \&quot;First Last\&quot; or \&quot;First Middle Last\&quot;\n   - Caller Number: XXX-XXX-XXXX\n   - Callee Number: XXX-XXX-XXXX\n   - Start Time: MM/DD/YYYY HH:MM\n   - End Time: MM/DD/YYYY HH:MM&quot; +
+          &quot;\n\nOptions:\n    -print : Prints a description of the new phone call\n          -&gt; If no information has been provided with print function then it will print error&quot; +
+          &quot;\n    -README : Prints a README for this project and exits\n          -&gt; Which you have currently!&quot;;
+
+  public static void main(String[] args) {
+<span class="fc" id="L21">    PhoneCall call = new PhoneCall();  // Refer to one of Dave's classes so that we can be sure it is on the classpath</span>
+<span class="fc" id="L22">    PhoneBill bill = new PhoneBill();  // PhoneBill class to contain customer name and PhoneCall data</span>
+
+    // If no command line argument
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">    if(args.length &lt; 1){</span>
+<span class="nc" id="L26">      System.err.println(&quot;Missing command line arguments&quot;);</span>
+<span class="nc" id="L27">      System.exit(1);</span>
+    }
+
+    // If only print option is called without any initialization
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">    if(args[0].equals(&quot;-print&quot;)  &amp;&amp; args.length == 1){</span>
+<span class="nc" id="L32">      System.err.println(&quot;No phone call information to print&quot;);</span>
+<span class="nc" id="L33">      System.exit(1);</span>
+    }
+
+    // If -print option with data is read
+<span class="pc bpc" id="L37" title="1 of 4 branches missed.">    if(args[0].equals(&quot;-print&quot;)  &amp;&amp; args.length == 8){</span>
+<span class="nc" id="L38">      parseInput(call, bill, args, 1);</span>
+    }
+    // Only -readme option is called
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">    else if(args[0].equals(&quot;-README&quot;) &amp;&amp; args.length == 1){</span>
+<span class="fc" id="L42">      System.out.println(README);</span>
+<span class="nc" id="L43">      System.exit(0);</span>
+    }
+    // Just call data has been inputted
+<span class="fc bfc" id="L46" title="All 2 branches covered.">    else if(args.length == 7){</span>
+<span class="nc" id="L47">      parseInput(call, bill, args, 0);</span>
+    }
+    // Everything else returns error
+    else{
+<span class="fc" id="L51">      System.err.println(&quot;Missing command line arguments&quot;);</span>
+<span class="nc" id="L52">      System.exit(1);</span>
+    }
+
+    // In non of the options were followed then exit with invalid
+<span class="nc" id="L56">    System.exit(1);</span>
+<span class="nc" id="L57">  }</span>
+
+  /**
+   * Checks if the String is integer
+   *
+   * @param input
+   *         String to check
+   * @return boolean
+   *          if the String is int or not with boolean
+   */
+  public static boolean isInt(String input){
+    boolean isIt;
+
+    // Try parsing String to Int, if can't then return false
+    try{
+<span class="fc" id="L72">      Integer.parseInt(input);</span>
+<span class="fc" id="L73">      isIt = true;</span>
+<span class="fc" id="L74">    }catch(NumberFormatException e){</span>
+<span class="fc" id="L75">      isIt = false;</span>
+<span class="fc" id="L76">    }</span>
+
+<span class="fc" id="L78">    return isIt;</span>
+  }
+
+  /**
+   *  Go through all the String that has been split to check if all of them are integer
+   *
+   * @param args
+   *         String array that was split from command line
+   * @param name
+   *         Name of the format
+   */
+  public static void checkInt(String[] args, String name){
+
+    // Go through all the String and check if it's integer or not
+<span class="fc bfc" id="L92" title="All 2 branches covered.">    for(String arg : args){</span>
+<span class="fc" id="L93">      boolean checker = isInt(arg);</span>
+
+<span class="fc bfc" id="L95" title="All 2 branches covered.">      if(checker == false){</span>
+<span class="fc" id="L96">        System.err.println(&quot;Incorrect &quot; + name + &quot; integer value!&quot;);</span>
+<span class="nc" id="L97">        System.exit(1);</span>
+      }
+    }
+<span class="fc" id="L100">  }</span>
+
+  /**
+   *  Test date format
+   *  Valid : MM/DD/YYYY
+   *      - Must be using &quot;/&quot; to separate the values
+   *      - Month and Day needs to be 1 or 2 digits
+   *      - Year needs to be 4 digits only
+   *      - Month needs to be between 1 and 12
+   *      - Day needs to be between 1 and 31
+   *      - Should only have month, day, and year and no more
+   *
+   * @param args
+   *         String array which was split from command line
+   * @param arg
+   *         Corresponding command line argument
+   * @param name
+   *         Name of the format
+   */
+  public static void checkDate(String[] args, String arg, String name) {
+<span class="fc" id="L120">    checkDateFormat(arg, name);</span>
+    // If there aren't Month, Day, and Year or more than that then error
+<span class="fc bfc" id="L122" title="All 2 branches covered.">    if(args.length != 3){</span>
+<span class="fc" id="L123">      System.err.println(&quot;Incorrect &quot; + name + &quot; date value!&quot;);</span>
+<span class="nc" id="L124">      System.exit(1);</span>
+    }
+
+    // If Month and Day has more than 2 digits then error
+<span class="fc bfc" id="L128" title="All 4 branches covered.">    if((args[0].length() &gt; 2) || (args[1].length() &gt; 2)){</span>
+<span class="fc" id="L129">      System.err.println(&quot;Incorrect &quot; + name + &quot; time value!&quot;);</span>
+<span class="nc" id="L130">      System.exit(1);</span>
+    }
+
+    // Change Month and Day string to int
+<span class="fc" id="L134">    int month = Integer.parseInt(args[0]);</span>
+<span class="fc" id="L135">    int day = Integer.parseInt(args[1]);</span>
+
+    // If the month value is outside the bound then error
+<span class="pc bpc" id="L138" title="2 of 4 branches missed.">    if (month &lt; 1 || month &gt; 12) {</span>
+<span class="nc" id="L139">      System.err.println(&quot;Incorrect &quot; + name + &quot; month value!&quot;);</span>
+<span class="nc" id="L140">      System.exit(1);</span>
+    }
+
+    // If the day value is outside the bound then error
+<span class="pc bpc" id="L144" title="2 of 4 branches missed.">    if (day &lt; 1 || day &gt; 31) {</span>
+<span class="nc" id="L145">      System.err.println(&quot;Incorrect &quot; + name + &quot; date value!&quot;);</span>
+<span class="nc" id="L146">      System.exit(1);</span>
+    }
+
+    // If year isn't in 4 digit then error
+<span class="fc bfc" id="L150" title="All 2 branches covered.">    if (args[2].length() != 4) {</span>
+<span class="fc" id="L151">      System.err.println(&quot;Incorrect &quot; + name + &quot; year value!&quot;);</span>
+<span class="nc" id="L152">      System.exit(1);</span>
+    }
+<span class="fc" id="L154">  }</span>
+
+  /**
+   *  Check time format
+   *
+   *  Valid : HH:MM
+   *      - Must be using &quot;:&quot; to separate the values
+   *      - Hour and Min should be the only input
+   *      - Hour and Min is 1 or 2 digits
+   *      - Hour needs to be between 0 and 23
+   *      - Min needs to be between 0 and 59
+   *
+   * @param args
+   *         String array split from the command line
+   * @param arg
+   *         Corresponding command line argument
+   * @param name
+   *         Name of the format
+   */
+  public static void checkTime(String[] args, String arg, String name){
+<span class="fc" id="L174">    checkTimeFormat(arg, name);</span>
+
+    // If there is less or more than 2 inputs (Hour and Min) then error
+<span class="fc bfc" id="L177" title="All 2 branches covered.">    if(args.length != 2){</span>
+<span class="fc" id="L178">      System.err.println(&quot;Incorrect &quot; + name + &quot; time value!&quot;);</span>
+<span class="nc" id="L179">      System.exit(1);</span>
+    }
+
+    // If hour and min is bigger than 2 digits then error
+<span class="fc bfc" id="L183" title="All 4 branches covered.">    if((args[0].length() &gt; 2) || (args[1].length() &gt; 2)){</span>
+<span class="fc" id="L184">      System.err.println(&quot;Incorrect &quot; + name + &quot; time value!&quot;);</span>
+<span class="nc" id="L185">      System.exit(1);</span>
+    }
+
+    // String to Int for hour and min value
+<span class="fc" id="L189">    int hour = Integer.parseInt(args[0]);</span>
+<span class="fc" id="L190">    int min = Integer.parseInt(args[1]);</span>
+
+    // If Hour is outside the bound then error
+<span class="pc bpc" id="L193" title="2 of 4 branches missed.">    if(hour &lt; 0 || hour &gt; 24){</span>
+<span class="nc" id="L194">      System.err.println(&quot;Incorrect &quot; + name + &quot; hour value!&quot;);</span>
+<span class="nc" id="L195">      System.exit(1);</span>
+    }
+
+    // If Min is outside the bound then error
+<span class="pc bpc" id="L199" title="2 of 4 branches missed.">    if(min &lt; 0 || min &gt;= 60){</span>
+<span class="nc" id="L200">      System.err.println(&quot;Incorrect &quot; + name + &quot; minute value!&quot;);</span>
+<span class="nc" id="L201">      System.exit(1);</span>
+    }
+<span class="fc" id="L203">  }</span>
+
+  /**
+   * Check if the caller/callee number format is separated via &quot;-&quot; and has 3 section
+   *
+   * @param args
+   *         String from command line argument
+   * @param name
+   *         Name of the format
+   */
+  public static void checkNumberFormat(String args, String name){
+    boolean numFormat;
+
+    // Checks if it has &quot;-&quot; if not then error
+<span class="fc" id="L217">    numFormat = args.contains(&quot;-&quot;);</span>
+
+<span class="pc bpc" id="L219" title="1 of 2 branches missed.">    if(numFormat == false){</span>
+<span class="nc" id="L220">      System.err.println(&quot;Incorrect &quot; + name + &quot; number format&quot;);</span>
+<span class="nc" id="L221">      System.exit(1);</span>
+    }
+
+<span class="fc" id="L224">    String[] call = args.split(&quot;-&quot;);</span>
+
+    // Check if it's separated by &quot;-&quot; and 3 sections
+<span class="fc bfc" id="L227" title="All 2 branches covered.">    if(call.length != 3){</span>
+<span class="fc" id="L228">      System.err.println(&quot;Incorrect &quot; + name + &quot; number format&quot;);</span>
+<span class="nc" id="L229">      System.exit(1);</span>
+    }
+<span class="fc" id="L231">  }</span>
+
+  /**
+   * Check if the starting/ending date format is separated via &quot;/&quot;
+   *
+   * @param args
+   *         String from command line argument
+   * @param name
+   *         Name of the format
+   */
+  public static void checkDateFormat(String args, String name){
+    boolean dateFormat;
+
+    // Check if &quot;/&quot; is contained and if not then error
+<span class="fc" id="L245">    dateFormat = args.contains(&quot;/&quot;);</span>
+
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">    if(dateFormat == false){</span>
+<span class="nc" id="L248">      System.err.println(&quot;Incorrect &quot; + name + &quot; date format&quot;);</span>
+<span class="nc" id="L249">      System.exit(1);</span>
+    }
+<span class="fc" id="L251">  }</span>
+
+  /**
+   * Check if the starting/ending time format is separated via &quot;:&quot;
+   *
+   * @param args
+   *         String from command line argument
+   * @param name
+   *         Name of the format
+   */
+  public static void checkTimeFormat(String args, String name) {
+    boolean timeFormat;
+
+    // Check if &quot;:&quot; is contained and if not then error
+<span class="fc" id="L265">    timeFormat = args.contains(&quot;:&quot;);</span>
+
+<span class="pc bpc" id="L267" title="1 of 2 branches missed.">    if (timeFormat == false) {</span>
+<span class="nc" id="L268">      System.err.println(&quot;Incorrect &quot; + name + &quot; time format&quot;);</span>
+<span class="nc" id="L269">      System.exit(1);</span>
+    }
+<span class="fc" id="L271">  }</span>
+
+  /**
+   * Parses the command line argument and initialize the PhoneCall field and add it to the PhoneBill field
+   *    Argument in order of
+   *        - Customer Name
+   *        - Caller Number
+   *        - Callee Number
+   *        - Starting Date
+   *        - Starting Time
+   *        - Ending Date
+   *        - Ending Time
+   *
+   * @param calling
+   *         PhoneCall field for the command line input
+   * @param billing
+   *         PhoneBill field for Customer name and PhoneCall field
+   * @param args
+   *         Command line argument
+   * @param i
+   *         Option buffer
+   */
+  public static void parseInput(PhoneCall calling, PhoneBill billing, String[] args, int i){
+    // Split with space and set PhoneBill's customer name
+<span class="fc" id="L295">    String[] name = args[i].split(&quot; &quot;);</span>
+<span class="fc" id="L296">    billing.setCustomer(name);</span>
+
+    // Split with &quot;-&quot; and check for caller number validity
+<span class="fc" id="L299">    String[] caller = args[i+1].split(&quot;-&quot;);</span>
+<span class="fc" id="L300">    checkInt(caller, &quot;caller&quot;);</span>
+<span class="fc" id="L301">    checkNumberFormat(args[i+1], &quot;caller&quot;);</span>
+
+    // Split with &quot;-&quot; and check for callee number validity
+<span class="fc" id="L304">    String[] callee = args[i+2].split(&quot;-&quot;);</span>
+<span class="fc" id="L305">    checkInt(callee, &quot;callee&quot;);</span>
+<span class="fc" id="L306">    checkNumberFormat(args[i+2], &quot;callee&quot;);</span>
+
+    // Split with &quot;/&quot; and check for starting date validity
+<span class="fc" id="L309">    String[] start = args[i+3].split(&quot;/&quot;);</span>
+<span class="fc" id="L310">    checkInt(start, &quot;starting date&quot;);</span>
+<span class="fc" id="L311">    checkDate(start, args[i+3], &quot;starting date's&quot;);</span>
+
+    // Split with &quot;:&quot; and check for starting time validity
+<span class="fc" id="L314">    String[] startTime = args[i+4].split(&quot;:&quot;);</span>
+<span class="fc" id="L315">    checkInt(startTime, &quot;starting time&quot;);</span>
+<span class="fc" id="L316">    checkTime(startTime, args[i+4], &quot;starting time&quot;);</span>
+
+    // Split with &quot;/&quot; and check for ending date validity
+<span class="fc" id="L319">    String[] end = args[i+5].split(&quot;/&quot;);</span>
+<span class="fc" id="L320">    checkInt(end, &quot;ending date&quot;);</span>
+<span class="fc" id="L321">    checkDate(start, args[i+5], &quot;ending date's&quot;);</span>
+
+    // Split with &quot;:&quot; and check for ending time validity
+<span class="fc" id="L324">    String[] endTime = args[i+6].split(&quot;:&quot;);</span>
+<span class="fc" id="L325">    checkInt(endTime, &quot;ending time&quot;);</span>
+<span class="fc" id="L326">    checkTime(endTime, args[i+6], &quot;ending time&quot;);</span>
+
+    // Initialize PhoneCall class with verified command line input
+<span class="fc" id="L329">    calling.initCall(caller, callee, start, end, startTime, endTime);</span>
+
+    // Add initialized PhoneCall class to the PhoneBill class
+<span class="fc" id="L332">    billing.addPhoneCall(calling);</span>
+
+    // Output with toString function
+<span class="fc" id="L335">    System.out.println(calling.toString());</span>
+
+    // Exit
+<span class="nc" id="L338">    System.exit(0);</span>
+<span class="nc" id="L339">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

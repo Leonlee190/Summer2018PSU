@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PhoneBill.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CS410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.seung2</a> &gt; <span class="el_source">PhoneBill.java</span></div><h1>PhoneBill.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.seung2;
+
+import edu.pdx.cs410J.AbstractPhoneBill;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+/**
+ * PhoneBill class that stores and returns customer name and collection of PhoneCall class
+ */
+<span class="fc" id="L12">public class PhoneBill extends AbstractPhoneBill&lt;PhoneCall&gt; {</span>
+    private String customer;                                        // Stores customer's name
+<span class="fc" id="L14">    private Collection&lt;PhoneCall&gt; calls = new ArrayList&lt;PhoneCall&gt;();        // Array list of PhoneCall classes</span>
+
+    /**
+     * Parses and sets the customer's name
+     *
+     * @param args
+     *         Array of String that was parsed from command line argument
+     */
+    public void setCustomer(String[] args){
+        // Get the first name
+<span class="fc" id="L24">        this.customer = args[0];</span>
+
+        // Get rest of the name
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        for(int i = 1; i &lt; args.length; i++){</span>
+<span class="fc" id="L28">            this.customer += &quot; &quot; + args[i];</span>
+        }
+<span class="fc" id="L30">    }</span>
+
+    /**
+     * Returns the customer's name
+     *
+     * @return
+     *          Returns the customer's name in String form
+     */
+    @Override
+    public String getCustomer() {
+<span class="fc" id="L40">        return this.customer;</span>
+    }
+
+    /**
+     * Add single PhoneCall class object into the collection
+     *
+     * @param phoneCall
+     *         PhoneCall class object initialized in the Project1's main
+     */
+    @Override
+    public void addPhoneCall(PhoneCall phoneCall) {
+        // Check if the adding is correctly done
+<span class="fc" id="L52">        boolean checker = this.calls.add(phoneCall);</span>
+
+        // If not added correctly then error
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if(!checker){</span>
+<span class="nc" id="L56">            System.err.println(&quot;Adding phonecall to the phonebill was unsuccessful&quot;);</span>
+<span class="nc" id="L57">            System.exit(1);</span>
+        }
+<span class="fc" id="L59">    }</span>
+
+    /**
+     * Returns the PhoneCall class collection
+     *
+      * @return
+     *           PhoneCall collection stored in the PhoneBill class
+     */
+    @Override
+    public Collection&lt;PhoneCall&gt; getPhoneCalls() {
+<span class="fc" id="L69">        return this.calls;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

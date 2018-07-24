@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>PhoneCall xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../apidocs/edu/pdx/cs410J/seung2/PhoneCall.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> edu.pdx.cs410J.seung2;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> edu.pdx.cs410J.AbstractPhoneCall;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> * PhoneCall class that stores and initialize customer's call information</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../edu/pdx/cs410J/seung2/PhoneCall.html">PhoneCall</a> <strong class="jxr_keyword">extends</strong> AbstractPhoneCall {
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>     <strong class="jxr_keyword">private</strong> String caller = <span class="jxr_string">"not implemented"</span>;          <em class="jxr_comment">// Caller's number</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>    <strong class="jxr_keyword">private</strong> String callee = <span class="jxr_string">"not implemented"</span>;          <em class="jxr_comment">// Callee's number</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>    <strong class="jxr_keyword">private</strong> String startTime = <span class="jxr_string">"not implemented"</span>;       <em class="jxr_comment">// Phone call's starting date and time</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>    <strong class="jxr_keyword">private</strong> String endTime = <span class="jxr_string">"not implemented"</span>;         <em class="jxr_comment">// Phone call's ending date and time</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">   * Initializes the PhoneCall's field with checked but fully parsed fields</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">   * @param Caller</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">   *         String array of caller's number in three sections</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">   * @param Callee</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">   *         String array of callee's number in three sections</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">   * @param sDate</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">   *         String array of starting date which has month, date, and year value</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment">   * @param eDate</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">   *         String array of ending date which has month, date, and year value</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">   * @param sTime</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">   *         String array of starting time which has hour and min</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">   * @param eTime</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">   *         String array of ending time which has hour and min</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> initCall(String[] Caller, String[] Callee, String[] sDate, String[] eDate, String[] sTime, String[] eTime){
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>      <em class="jxr_comment">// Initialize caller and callee's phone number with correct format</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <strong class="jxr_keyword">this</strong>.caller = Caller[0] + <span class="jxr_string">"-"</span> + Caller[1] + <span class="jxr_string">"-"</span> + Caller[2];
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">this</strong>.callee = Callee[0] + <span class="jxr_string">"-"</span> + Callee[1] + <span class="jxr_string">"-"</span> + Callee[2];
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_comment">// Initialize starting and ending date and time with correct format</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">this</strong>.startTime = sDate[0] + <span class="jxr_string">"/"</span> + sDate[1] + <span class="jxr_string">"/"</span> + sDate[2] + <span class="jxr_string">" "</span> + sTime[0] + <span class="jxr_string">":"</span> + sTime[1];
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <strong class="jxr_keyword">this</strong>.endTime = eDate[0] + <span class="jxr_string">"/"</span> + eDate[1] + <span class="jxr_string">"/"</span> + eDate[2] + <span class="jxr_string">" "</span> + eTime[0] + <span class="jxr_string">":"</span> + eTime[1];
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>    }
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">   * Returns the caller's number</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment">   * @return</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment">   *          Returns the caller's number stored in PhoneCall class</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>    @Override
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>    <strong class="jxr_keyword">public</strong> String getCaller() {
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.caller;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>    }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">   * Returns the callee's number</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">   * @return</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">   *          Returns the callee's number stored in PhoneCall class</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>    @Override
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>    <strong class="jxr_keyword">public</strong> String getCallee() {
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.callee;
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>    }
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">   * Returns the starting date and time</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">   * @return</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">   *          Returns the starting date and time stored in PhoneCall class</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>    @Override
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>    <strong class="jxr_keyword">public</strong> String getStartTimeString() {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.startTime;
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>    }
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">   * Returns ending date and time</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">   * @return</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">   *          Returns the ending date and time stored in PhoneCall class</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>    @Override
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>    <strong class="jxr_keyword">public</strong> String getEndTimeString() {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.endTime;
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>    }
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2000&#x2013;2018 <a href="http://www.pdx.edu">Portland State University</a>. All rights reserved.</div>
+</body>
+</html>

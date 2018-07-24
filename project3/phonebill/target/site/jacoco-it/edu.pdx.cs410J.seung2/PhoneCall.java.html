@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PhoneCall.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CS410J Phone Bill Project</a> &gt; <a href="index.source.html" class="el_package">edu.pdx.cs410J.seung2</a> &gt; <span class="el_source">PhoneCall.java</span></div><h1>PhoneCall.java</h1><pre class="source lang-java linenums">package edu.pdx.cs410J.seung2;
+
+import edu.pdx.cs410J.AbstractPhoneCall;
+
+/**
+ * PhoneCall class that stores and initialize customer's call information
+ */
+<span class="fc" id="L8">public class PhoneCall extends AbstractPhoneCall {</span>
+<span class="fc" id="L9">  private String caller = &quot;not implemented&quot;;          // Caller's number</span>
+<span class="fc" id="L10">  private String callee = &quot;not implemented&quot;;          // Callee's number</span>
+<span class="fc" id="L11">  private String startTime = &quot;not implemented&quot;;       // Phone call's starting date and time</span>
+<span class="fc" id="L12">  private String endTime = &quot;not implemented&quot;;         // Phone call's ending date and time</span>
+
+  /**
+   * Initializes the PhoneCall's field with checked but fully parsed fields
+   *
+   * @param Caller
+   *         String array of caller's number in three sections
+   * @param Callee
+   *         String array of callee's number in three sections
+   * @param sDate
+   *         String array of starting date which has month, date, and year value
+   * @param eDate
+   *         String array of ending date which has month, date, and year value
+   * @param sTime
+   *         String array of starting time which has hour and min
+   * @param eTime
+   *         String array of ending time which has hour and min
+   */
+  public void initCall(String[] Caller, String[] Callee, String[] sDate, String[] eDate, String[] sTime, String[] eTime){
+    // Initialize caller and callee's phone number with correct format
+<span class="fc" id="L32">    this.caller = Caller[0] + &quot;-&quot; + Caller[1] + &quot;-&quot; + Caller[2];</span>
+<span class="fc" id="L33">    this.callee = Callee[0] + &quot;-&quot; + Callee[1] + &quot;-&quot; + Callee[2];</span>
+
+    // Initialize starting and ending date and time with correct format
+<span class="fc" id="L36">    this.startTime = sDate[0] + &quot;/&quot; + sDate[1] + &quot;/&quot; + sDate[2] + &quot; &quot; + sTime[0] + &quot;:&quot; + sTime[1];</span>
+<span class="fc" id="L37">    this.endTime = eDate[0] + &quot;/&quot; + eDate[1] + &quot;/&quot; + eDate[2] + &quot; &quot; + eTime[0] + &quot;:&quot; + eTime[1];</span>
+<span class="fc" id="L38">  }</span>
+
+  /**
+   * Returns the caller's number
+   *
+   * @return
+   *          Returns the caller's number stored in PhoneCall class
+   */
+  @Override
+  public String getCaller() {
+<span class="fc" id="L48">    return this.caller;</span>
+  }
+
+  /**
+   * Returns the callee's number
+   *
+   * @return
+   *          Returns the callee's number stored in PhoneCall class
+   */
+  @Override
+  public String getCallee() {
+<span class="fc" id="L59">    return this.callee;</span>
+  }
+
+  /**
+   * Returns the starting date and time
+   *
+   * @return
+   *          Returns the starting date and time stored in PhoneCall class
+   */
+  @Override
+  public String getStartTimeString() {
+<span class="fc" id="L70">    return this.startTime;</span>
+  }
+
+  /**
+   * Returns ending date and time
+   *
+   * @return
+   *          Returns the ending date and time stored in PhoneCall class
+   */
+  @Override
+  public String getEndTimeString() {
+<span class="fc" id="L81">    return this.endTime;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

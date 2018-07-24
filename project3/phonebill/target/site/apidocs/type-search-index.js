@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"edu.pdx.cs410J.seung2","l":"PhoneBill"},{"p":"edu.pdx.cs410J.seung2","l":"PhoneCall"},{"p":"edu.pdx.cs410J.seung2","l":"Project2"},{"p":"edu.pdx.cs410J.seung2","l":"TextDumper"},{"p":"edu.pdx.cs410J.seung2","l":"TextParser"}]
