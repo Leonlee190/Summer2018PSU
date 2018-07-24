@@ -9,7 +9,7 @@
   <groupId>edu.pdx.cs410J.seung2</groupId>
   <artifactId>phonebill</artifactId>
   <packaging>jar</packaging>
-  <version>2.0-SNAPSHOT</version>
+  <version>3.0-SNAPSHOT</version>
   <name>CS410J Phone Bill Project</name>
   <description>A Phone Bill application for CS410J at Portland State University</description>
   <inceptionYear>2000</inceptionYear>
@@ -72,7 +72,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>edu.pdx.cs410J.seung2.Project2</mainClass>
+              <mainClass>edu.pdx.cs410J.seung2.Project3</mainClass>
             </manifest>
           </archive>
         </configuration>

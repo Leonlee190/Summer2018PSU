@@ -5,14 +5,17 @@ import edu.pdx.cs410J.ParserException;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Date;
 
 
 /**
  * The main class for the CS410J Phone Bill Project
  */
-public class Project2 {
+public class Project3 {
   // README option printer
   public static String README = "\nCourse: CS 401J\nProject 1: Designing a Phone Bill Application\nProgrammer: SeungJun Lee" +
           "\nDescription: This project parses the user's command line arguments and initialize PhoneCall class and PhoneBill class or " +
@@ -29,6 +32,23 @@ public class Project2 {
     TextDumper dumper = new TextDumper(); // TextDumper class for -textFile option
     TextParser parser = new TextParser(); // TextParser class for -textFile option
 
+    StringBuilder sb = new StringBuilder();
+    for(int i = 0; i < args.length; i++){
+      sb.append(args[i] + " ");
+    }
+    Date date = null;
+    int f = DateFormat.MEDIUM;
+    DateFormat df = DateFormat.getDateTimeInstance(f, f);
+
+    try{
+      date = df.parse(sb.toString().trim());
+    }catch(ParseException ex){
+      System.err.println("** Bad date: " + sb);
+      System.exit(1);
+    }
+    System.exit(0);
+
+
     // If no command line argument
     if(args.length < 1){
       System.err.println("Missing command line arguments");
@@ -36,9 +56,9 @@ public class Project2 {
     }
 
     // Only use -textFile option if it's "-textFile" spelling and with 8 arguments
-    if(args[0].equals("-textFile") && (args.length == 9 || (args.length == 10 && args[2].equals("-print")))){
+    if(args[0].equals("-textFile") && (args.length == 11 || (args.length == 12 && args[2].equals("-print")))){
       int buffer = 2;
-      if(args.length == 10){
+      if(args.length == 12){
         buffer = 3;
       }
       // Check if the file name is correct
@@ -49,7 +69,7 @@ public class Project2 {
 
       // Initialize the PhoneBill and PhoneCall from command line argument
       parseInput(call, bill, args, buffer);
-      if(args.length == 10){
+      if(args.length == 12){
         System.out.println(call.toString());
       }
       addCalls(bill, call);
@@ -129,7 +149,7 @@ public class Project2 {
     }
 
     // If -print option with data is read
-    if(args[0].equals("-print")  && args.length == 8){
+    if(args[0].equals("-print")  && args.length == 10){
       parseInput(call, bill, args, 1);
       addCalls(bill, call);
       System.out.println(call.toString());
@@ -141,7 +161,7 @@ public class Project2 {
       System.exit(0);
     }
     // Just call data has been inputted
-    else if(args.length == 7){
+    else if(args.length == 9){
       parseInput(call, bill, args, 0);
       addCalls(bill, call);
       System.out.println(call.toString());
@@ -396,6 +416,9 @@ public class Project2 {
     String[] name = args[i].split(" ");
     billing.setCustomer(name);
 
+    callInput(calling, args, i);
+
+    /*
     // Split with "-" and check for caller number validity
     String[] caller = args[i+1].split("-");
     checkInt(caller, "caller");
@@ -428,6 +451,7 @@ public class Project2 {
 
     // Initialize PhoneCall class with verified command line input
     calling.initCall(caller, callee, start, end, startTime, endTime);
+    */
   }
 
   /**
@@ -463,18 +487,24 @@ public class Project2 {
     checkInt(startTime, "starting time");
     checkTime(startTime, args[i+4], "starting time");
 
+    String startAMPM = args[i+5];
+    checkAMPM(startAMPM);
+
     // Split with "/" and check for ending date validity
-    String[] end = args[i+5].split("/");
+    String[] end = args[i+6].split("/");
     checkInt(end, "ending date");
-    checkDate(end, args[i+5], "ending date's");
+    checkDate(end, args[i+6], "ending date's");
 
     // Split with ":" and check for ending time validity
-    String[] endTime = args[i+6].split(":");
+    String[] endTime = args[i+7].split(":");
     checkInt(endTime, "ending time");
-    checkTime(endTime, args[i+6], "ending time");
+    checkTime(endTime, args[i+7], "ending time");
+
+    String endAMPM = args[i+8];
+    checkAMPM(endAMPM);
 
     // Initialize PhoneCall class with verified command line input
-    calling.initCall(caller, callee, start, end, startTime, endTime);
+    calling.initCall(caller, callee, start, end, startTime, endTime, startAMPM, endAMPM);
   }
 
   /**
@@ -526,6 +556,19 @@ public class Project2 {
   public static void checkFilename(String fileName){
     if(!fileName.endsWith(".txt")){
       System.err.println("Incorrect File Name. Does not contain .txt format");
+      System.exit(1);
+    }
+  }
+
+  /**
+   * Checks if the date is in AM PM format
+   *
+   * @param dTime
+   *         AM PM string from command line argument
+   */
+  public static void checkAMPM(String dTime){
+    if(!dTime.equals("AM") && !dTime.equals("am") && !dTime.equals("pm") && !dTime.equals("PM")){
+      System.err.println("Time is not in am / AM / pm / PM format");
       System.exit(1);
     }
   }
