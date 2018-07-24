@@ -36,7 +36,11 @@ public class Project2 {
     }
 
     // Only use -textFile option if it's "-textFile" spelling and with 8 arguments
-    if(args[0].equals("-textFile") && args.length == 9){
+    if(args[0].equals("-textFile") && (args.length == 9 || (args.length == 10 && args[2].equals("-print")))){
+      int buffer = 2;
+      if(args.length == 10){
+        buffer = 3;
+      }
       // Check if the file name is correct
       checkFilename(args[1]);
 
@@ -44,7 +48,10 @@ public class Project2 {
       String fileName = args[1];
 
       // Initialize the PhoneBill and PhoneCall from command line argument
-      parseInput(call, bill, args, 2);
+      parseInput(call, bill, args, buffer);
+      if(args.length == 10){
+        System.out.println(call.toString());
+      }
       addCalls(bill, call);
 
       // Within try and catch for IOException
@@ -119,12 +126,6 @@ public class Project2 {
 
       // Exit if all done
       System.exit(0);
-    }
-
-    // If only print option is called without any initialization
-    if(args[0].equals("-print")  && args.length == 1){
-      System.err.println("No phone call information to print");
-      System.exit(1);
     }
 
     // If -print option with data is read
