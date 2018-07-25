@@ -2,14 +2,12 @@ package edu.pdx.cs410J.seung2;
 
 import edu.pdx.cs410J.AbstractPhoneBill;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * PhoneBill class that stores and returns customer name and collection of PhoneCall class
  */
-public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
+public class PhoneBill extends AbstractPhoneBill<PhoneCall>{
     private String customer;                                        // Stores customer's name
     private Collection<PhoneCall> calls = new ArrayList<PhoneCall>();        // Array list of PhoneCall classes
 
@@ -67,5 +65,19 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
     @Override
     public Collection<PhoneCall> getPhoneCalls() {
         return this.calls;
+    }
+
+    /**
+     * Copy the PhoneCall collection
+     *
+     * @param cs
+     *         PhoneCall collection source
+     */
+    public void setPhoneCalls(Collection<PhoneCall> cs){
+        if(cs == null){
+            System.err.println("PhoneCall list is empty");
+            System.exit(1);
+        }
+        this.calls = cs;
     }
 }

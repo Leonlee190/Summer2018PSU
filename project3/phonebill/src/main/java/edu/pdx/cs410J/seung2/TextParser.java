@@ -5,6 +5,8 @@ import edu.pdx.cs410J.ParserException;
 import edu.pdx.cs410J.PhoneBillParser;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -37,7 +39,6 @@ public class TextParser implements PhoneBillParser{
     @Override
     public AbstractPhoneBill parse() throws ParserException {
         PhoneBill bill = new PhoneBill(); // Set up the PhoneBill for initializing and returning
-
         try {
             // Set up the BufferedReader for parsing
             File f = new File(fl);
@@ -61,7 +62,6 @@ public class TextParser implements PhoneBillParser{
             // Read until empty line
             while((st = in.readLine()) != null){
                 // Since while statement read a line, check validity of caller number
-                Project3.checkNumberFormat(st, "caller");
                 String[] args = new String[8];
                 // Put it into the argument String array in order
                 args[0] = st;
@@ -69,7 +69,6 @@ public class TextParser implements PhoneBillParser{
                 // Read another line and do check it for callee format
                 st = in.readLine();
                 checkNull(st, "callee");
-                Project3.checkNumberFormat(st, "callee");
                 args[1] = st;
 
                 // Read another line and split them and check for Date and Time format
@@ -77,27 +76,21 @@ public class TextParser implements PhoneBillParser{
                 checkNull(st, "start time");
                 String[] Start = st.split(" ");
                 args[2] = Start[0];
-                Project3.checkDateFormat(args[2], "start date");
                 args[3] = Start[1];
-                Project3.checkTimeFormat(args[3], "start time");
                 args[4] = Start[2];
-                Project3.checkAMPM(args[4]);
 
                 // Read another line and split them and check for Date and Time format
                 st = in.readLine();
                 checkNull(st, "end time");
                 String[] End = st.split(" ");
                 args[5] = End[0];
-                Project3.checkDateFormat(args[5], "end date");
                 args[6] = End[1];
-                Project3.checkTimeFormat(args[6], "end time");
                 args[7] = End[2];
-                Project3.checkAMPM(args[7]);
 
                 // Create PhoneCall -> initialize it -> add it to PhoneBill
-                PhoneCall ca = new PhoneCall();
-                Project3.callInput(ca, args,-1);
-                Project3.addCalls(bill, ca);
+                PhoneCall ca = Project3.initCall(args);
+
+                bill.addPhoneCall(ca);
             }
         }catch(IOException e){          // If anything wrong with IO handling
             System.err.println("Unable to read from " + fl);
