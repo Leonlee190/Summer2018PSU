@@ -142,7 +142,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -237,7 +237,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/practice" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build.tools" />
   </component>
   <component name="RunDashboard">
@@ -252,7 +252,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Project3">
+  <component name="RunManager" selected="JUnit.PhoneCallTest.getStartTimeStringNeedsToBeImplemented">
     <configuration name="Project1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.seung2.Project1" />
       <module name="phonebill" />
@@ -279,6 +279,29 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="PhoneCallTest.getStartTimeStringNeedsToBeImplemented" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="phonebill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.pdx.cs410J.seung2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="edu.pdx.cs410J.seung2" />
+      <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.seung2.PhoneCallTest" />
+      <option name="METHOD_NAME" value="getStartTimeStringNeedsToBeImplemented" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="Project3IT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="phonebill" />
@@ -316,29 +339,6 @@
       <option name="PACKAGE_NAME" value="edu.pdx.cs410J.seung2" />
       <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.seung2.Project3IT" />
       <option name="METHOD_NAME" value="incorrectFileInput" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="Project3IT.incorrectNumberForm" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="phonebill" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.pdx.cs410J.seung2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="edu.pdx.cs410J.seung2" />
-      <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.seung2.Project3IT" />
-      <option name="METHOD_NAME" value="incorrectNumberForm" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -391,16 +391,16 @@
       <item itemvalue="Application.Project1" />
       <item itemvalue="Application.Project3" />
       <item itemvalue="JUnit.Project3IT" />
-      <item itemvalue="JUnit.Project3IT.incorrectNumberForm" />
       <item itemvalue="JUnit.Project3IT.incorrectFileInput" />
+      <item itemvalue="JUnit.PhoneCallTest.getStartTimeStringNeedsToBeImplemented" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PhoneCallTest.getStartTimeStringNeedsToBeImplemented" />
         <item itemvalue="Application.Project3" />
         <item itemvalue="JUnit.Project3IT.incorrectFileInput" />
         <item itemvalue="Application.Project1" />
         <item itemvalue="JUnit.Project3IT" />
-        <item itemvalue="JUnit.Project3IT.incorrectNumberForm" />
       </list>
     </recent_temporary>
   </component>
@@ -462,7 +462,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.37908497" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.37908497" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />

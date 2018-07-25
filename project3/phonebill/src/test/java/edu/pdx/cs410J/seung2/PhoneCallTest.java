@@ -13,7 +13,7 @@ public class PhoneCallTest {
   @Test
   public void getStartTimeStringNeedsToBeImplemented() {
     PhoneCall call = new PhoneCall();
-    call.getStartTimeString();
+    assertThat(call.getStartTimeString(), containsString("not implemented"));
   }
 
   @Test

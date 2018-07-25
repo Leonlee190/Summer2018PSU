@@ -104,6 +104,9 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall
    */
   @Override
   public String getStartTimeString() {
+    if(startT == null){
+      return "not implemented";
+    }
     return this.ft.format(this.startT);
   }
 
@@ -126,6 +129,9 @@ public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall
    */
   @Override
   public String getEndTimeString() {
+    if(endT == null){
+      return "not implemented";
+    }
     return this.ft.format(this.endT);
   }
 
