@@ -5,6 +5,8 @@ import edu.pdx.cs410J.ParserException;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -515,26 +517,23 @@ public class Project3 {
    *         Return the initialized Date class object
    */
   public static Date initDate(String day, String hour, String ampm){
-    Date date;
+    Date date = null;
 
     // Check for error
     checkDate(day,  "date");
     checkTime(hour, "time");
     checkAMPM(ampm, "am/pm");
 
-    // Split the date string into month, day, year
-    String[] days = day.split("/");
-    int m = Integer.parseInt(days[0]);
-    int d = Integer.parseInt(days[1]);
-    int y = Integer.parseInt(days[2]);
+    String input = day + " " + hour + " " + ampm;
 
-    // Split the time string into hour and min
-    String[] hours = hour.split(":");
-    int h = Integer.parseInt(hours[0]);
-    int min = Integer.parseInt(hours[1]);
-
-    // Initialize the Date class via constructor
-    date = new Date(y-1900,m-1,d,h,min);
+    // Using SimpleDateFormat Class to give format and parse through the String and initialize Date class
+    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+    try{
+      date = sdf.parse(input);
+    }catch(ParseException e){
+      System.err.println("Setting Date class was unsuccessful");
+      System.exit(1);
+    }
 
     return date;
   }
