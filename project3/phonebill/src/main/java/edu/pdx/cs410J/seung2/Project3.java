@@ -26,10 +26,13 @@ public class Project3 {
 
   // File name for -textFile and -pretty option
   public static String fileName = null;
+  public static String pfileName = null;
+  public static boolean added = false;
 
   public static void main(String[] args) {
     PhoneCall call = new PhoneCall();                   // Refer to one of Dave's classes so that we can be sure it is on the classpath
     PhoneBill bill = new PhoneBill();                   // PhoneBill class to contain customer name and PhoneCall data
+    PhoneBill parseBill = new PhoneBill();
     TextDumper dumper = new TextDumper();               // TextDumper class for -textFile option
     TextParser parser = new TextParser();               // TextParser class for -textFile option
     PrettyPrinter printer = new PrettyPrinter();        // PrettyPrinter class for -pretty option
@@ -41,7 +44,7 @@ public class Project3 {
     }
 
     // Go through the command line and execute
-    runOp(args, bill, call, dumper, parser, printer);
+    runOp(args, bill, parseBill, call, dumper, parser, printer);
 
     System.exit(0);
   }
@@ -65,7 +68,7 @@ public class Project3 {
    * @return
    *         Return 1 or 0 for error checking and to return to previous stack
    */
-  public static int runOp(String[] args, PhoneBill bill, PhoneCall call, TextDumper dumper, TextParser parser, PrettyPrinter printer){
+  public static int runOp(String[] args, PhoneBill bill, PhoneBill parsebill, PhoneCall call, TextDumper dumper, TextParser parser, PrettyPrinter printer){
     // if argument is empty then send out error
     if(args.length < 1){
       System.err.println("Missing command line arguments");
@@ -89,7 +92,7 @@ public class Project3 {
       shrinkArray(args, nArgs);
 
       // Send it back into the recursion
-      check = runOp(nArgs, bill, call, dumper, parser, printer);
+      check = runOp(nArgs, bill, parsebill, call, dumper, parser, printer);
       if(check > 0){
         System.err.println("-print option didn't work correctly");
         System.exit(1);
@@ -103,6 +106,8 @@ public class Project3 {
 
     // -textFile option
     else if(option.equals("-textFile")){
+      boolean fileFlag = false;
+
       // Remove option
       String[] nArgs = new String[args.length - 1];
       shrinkArray(args, nArgs);
@@ -111,18 +116,24 @@ public class Project3 {
       if(args[1].charAt(0) != '-') {
         // retrieve file name
         fileName = args[1];
+        checkFilename(fileName);
+
+        fileFlag = checkCreateNew();
+        if(!fileFlag){
+          textOptionParse(parsebill, parser);
+        }
 
         // Shrink the args again because it retrieved the file name
         String[] nnArgs = new String[nArgs.length - 1];
         shrinkArray(nArgs, nnArgs);
 
         // back into the recursion
-        check = runOp(nnArgs, bill, call, dumper, parser, printer);
+        check = runOp(nnArgs, bill, parsebill, call, dumper, parser, printer);
       }
       // if another option is followed
       else {
         // back into the recursion
-        check = runOp(nArgs, bill, call, dumper, parser, printer);
+        check = runOp(nArgs, bill, parsebill, call, dumper, parser, printer);
       }
       if(check > 0) {
         System.err.println("-textFile option didn't work correctly");
@@ -131,7 +142,7 @@ public class Project3 {
 
       // Check file name and send it into the textOption method for parsing/dumping
       checkFilename(fileName);
-      textOption(fileName, dumper, parser, bill, call);
+      textOptionDump(dumper, parsebill, bill, call);
 
       return 0;
     }
@@ -147,10 +158,10 @@ public class Project3 {
       // File name is followed immediately
       if(args[1].charAt(0) != '-' && args[1].length() > 1) {
         // retrieve file name -> shrink array -> back into recursion
-        fileName = args[1];
+        pfileName = args[1];
         String[] nnArgs = new String[nArgs.length - 1];
         shrinkArray(nArgs, nnArgs);
-        check = runOp(nnArgs, bill, call, dumper, parser, printer);
+        check = runOp(nnArgs, bill, parsebill, call, dumper, parser, printer);
       }
       // if it's standard output option
       else if(args[1].equals("-")){
@@ -159,11 +170,11 @@ public class Project3 {
         // Shrink array and send it back to recursion
         String[] nnArgs = new String[nArgs.length - 1];
         shrinkArray(nArgs, nnArgs);
-        check = runOp(nnArgs, bill, call, dumper, parser, printer);
+        check = runOp(nnArgs, bill, parsebill, call, dumper, parser, printer);
       }
       // more options to be done
       else{
-        check = runOp(nArgs, bill, call, dumper, parser, printer);
+        check = runOp(nArgs, bill, parsebill, call, dumper, parser, printer);
       }
 
       if(check > 0) {
@@ -174,13 +185,13 @@ public class Project3 {
       // if std out flag is not set
       if(p == 0) {
         // Check file name and send it into prettyParse method for reading dumping
-        checkFilename(fileName);
-        prettyParse(fileName, printer, parser, bill, call);
+        checkFilename(pfileName);
+        prettyParse(fileName, printer, parser, parsebill, bill, call);
       }
       // If std out flag is set
       else{
         // Call prettyPrint method for std out
-        prettyPrint(bill);
+        prettyPrint(parser, parsebill, bill, call);
       }
 
       return 0;
@@ -190,6 +201,7 @@ public class Project3 {
     else if(args.length == 9){
       // Initialize PhoneBill with command line argument
       initBill(args, bill, call);
+      added = true;
 
       return 0;
     }
@@ -495,6 +507,14 @@ public class Project3 {
     }
   }
 
+  /**
+   * Check AMPM format of command line argument
+   *
+   * @param ampm
+   *         String argument from command line
+   * @param name
+   *         Name of the tested
+   */
   // Check AM and PM
   public static void checkAMPM(String ampm, String name){
     // if it's not am or pm then error
@@ -520,7 +540,9 @@ public class Project3 {
     Date date = null;
 
     // Check for error
+    checkInt(day.split("/"), "date");
     checkDate(day,  "date");
+    checkInt(hour.split(":"), "time");
     checkTime(hour, "time");
     checkAMPM(ampm, "am/pm");
 
@@ -728,15 +750,15 @@ public class Project3 {
    * @param call
    *         PhoneCall class initialized from command line
    */
-  public static void prettyParse(String fileName, PrettyPrinter printer, TextParser parser, PhoneBill bill, PhoneCall call){
+  public static void prettyParse(String fileName, PrettyPrinter printer, TextParser parser, PhoneBill parsebill, PhoneBill bill, PhoneCall call){
     try{
       // Parse the file
       parser.setFl(fileName);
       AbstractPhoneBill getBill = parser.parse();
 
-      // If the customer name doesn't match then error
-      if(!getBill.getCustomer().equals(bill.getCustomer())){
-        System.err.println("Input PhoneBill customer name does not match the file's customer name");
+      // If text file's customer and command line's customer does not match then error
+      if(!parsebill.getCustomer().equals(bill.getCustomer())){
+        System.err.println("Input Phone Bill customer name does not match the file's customer name");
         System.exit(1);
       }
 
@@ -775,16 +797,42 @@ public class Project3 {
    * @param bill
    *         PhoneBill data for printing out
    */
-  public static void prettyPrint(PhoneBill bill){
+  public static void prettyPrint(TextParser parser, PhoneBill parsebill, PhoneBill bill, PhoneCall call){
     int n = 1;        // Printing index
     String output = "\nPhone bill records for ";        // String field for gathering all the std output data
 
+    if(parsebill.getPhoneCalls().size() == 0) {
+      try {
+        parser.setFl(fileName);
+        AbstractPhoneBill getBill = parser.parse();
+        // Copy the parsed PhoneBill data for next recursion
+        parsebill.setCustomer(getBill.getCustomer().split(" "));
+        parsebill.setPhoneCalls(getBill.getPhoneCalls());
+
+        // sort order
+        Collections.sort((ArrayList)parsebill.getPhoneCalls());
+      }catch(ParserException e){
+        System.err.println("Prettyprint parsing went wrong");
+        System.exit(1);
+      }
+    }
+    // Check duplicate
+    int ch = checkPrettyCallDupli(parsebill.getPhoneCalls(), call);
+
+    if(ch == 0) {
+      parsebill.addPhoneCall(call);
+    }
+
+    // Copy the parsed PhoneBill data for next recursion
+    bill.setCustomer(parsebill.getCustomer().split(" "));
+    bill.setPhoneCalls(parsebill.getPhoneCalls());
+    Collections.sort((ArrayList)parsebill.getPhoneCalls());
     // set up for iteration
-    Collection<PhoneCall> calls = bill.getPhoneCalls();
+    Collection<PhoneCall> calls = parsebill.getPhoneCalls();
 
     Iterator<PhoneCall> iter = calls.iterator();
 
-    output += "Customer: " + bill.getCustomer() + "\n\n";
+    output += "Customer: " + parsebill.getCustomer() + "\n\n";
     output += "******************** List of Calls *******************\n\n";
 
     // Loop through and gather all the PhoneCall information
@@ -807,5 +855,108 @@ public class Project3 {
 
     // Print
     System.out.println(output);
+  }
+
+  /**
+   * Create new file and return a boolean which indicates if the file already existed or not
+   *
+   * @return
+   *          Boolean value that shows if file already existed or not
+   */
+  public static boolean checkCreateNew(){
+    try {
+      // Open up the file
+      File fl = new File(fileName);
+
+      // Create new file
+      boolean checker = fl.createNewFile();
+
+      return checker;
+    }catch(IOException e){
+      System.err.println("Creating new file " + fileName + " has failed");
+      System.exit(1);
+    }
+
+    return false;
+  }
+
+  /**
+   * -textFile option
+   * it parses through the file name given and sort the array
+   *
+   * @param bill
+   *         PhoneBill object to copy the parsed values
+   * @param parser
+   *         TextParser object to use parse method
+   */
+  public static void textOptionParse(PhoneBill bill, TextParser parser){
+    // Open up the file
+    File fl = new File(fileName);
+
+    if(fl.length() == 0){
+      System.err.println("Nothing in the file. Invalid file.");
+      System.exit(1);
+    }
+
+    try {
+      // Set up the parser with the file name
+      parser.setFl(fileName);
+
+      // Retrieve the AbstractPhoneBill returned by file parsing
+      AbstractPhoneBill getBill = parser.parse();
+
+      // Sort out
+      Collections.sort((ArrayList)getBill.getPhoneCalls());
+
+      // Copy the PhoneBill so that next recursion can also use it
+      bill.setCustomer(getBill.getCustomer().split(" "));
+      bill.setPhoneCalls(getBill.getPhoneCalls());
+
+    }catch(ParserException e){          // If Parsing was invalid
+      System.err.println("Couldn't parse the " + fileName + " file");
+      System.exit(1);
+    }
+  }
+
+  /**
+   * -textFile option
+   * Retrieve the parsed data via parameter
+   * Add PhoneCall, which was from command line argument
+   * Sort the array and write it into the given file name
+   *
+   * @param dumper
+   * @param parsebill
+   * @param bill
+   * @param call
+   */
+  public static void textOptionDump(TextDumper dumper, PhoneBill parsebill, PhoneBill bill, PhoneCall call){
+    int ch = checkPrettyCallDupli(parsebill.getPhoneCalls(), call);
+
+    if(ch == 0) {
+      parsebill.addPhoneCall(call);
+    }
+
+    if(parsebill.getCustomer() != null) {
+      // If text file's customer and command line's customer does not match then error
+      if (!parsebill.getCustomer().equals(bill.getCustomer())) {
+        System.err.println("Input Phone Bill customer name does not match the file's customer name");
+        System.exit(1);
+      }
+      // sort order
+      Collections.sort((ArrayList)parsebill.getPhoneCalls());
+
+      bill.setCustomer(parsebill.getCustomer().split(" "));
+      bill.setPhoneCalls(parsebill.getPhoneCalls());
+    }
+
+    // Catch IOException because it's dump not parse
+    try {
+      // Set up the dumper with the file name and dump
+      dumper.setFl(fileName);
+      dumper.dump(bill);
+    }catch(IOException e){
+      System.err.println("Writing onto file failed after reading from " + fileName);
+      System.exit(1);
+    }
   }
 }

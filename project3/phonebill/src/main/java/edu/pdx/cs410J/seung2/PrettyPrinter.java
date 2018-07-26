@@ -28,7 +28,7 @@ public class PrettyPrinter implements PhoneBillDumper{
         int i = 1;              // Number for index
         try {
             // Set up for writing and create "BillPrint.txt" for dumping
-            File f = new File("BillPrint.txt");
+            File f = new File(Project3.pfileName);
             f.createNewFile();
             FileWriter fw = new FileWriter(f);
             BufferedWriter out = new BufferedWriter(fw);
