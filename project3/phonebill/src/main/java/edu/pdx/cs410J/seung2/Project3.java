@@ -560,102 +560,6 @@ public class Project3 {
     return date;
   }
 
-
-  /**
-   * -textFile option
-   *
-   * 1. Create new file if it doesn't already exist
-   * 2. Parse from the file and initialize PhoneBill
-   * 3. Add the PhoneCall from command line argument into PhoneBill
-   * 4. Dump all the PhoneBill data into the file
-   *
-   * @param fileName
-   *         Name of the file accessing
-   * @param dumper
-   *         TextDumper class object for using dump method
-   * @param parser
-   *         TextParser class object for using parse method
-   * @param bill
-   *         PhoneBill class object for copying the retrieved AbstractPhoneBill data
-   * @param call
-   *         PhoneCall class object for grabbing command line argument
-   */
-  public static void textOption(String fileName, TextDumper dumper, TextParser parser, PhoneBill bill, PhoneCall call){
-    try {
-      // Open up the file
-      File fl = new File(fileName);
-
-      // Create new file
-      boolean checker = fl.createNewFile();
-
-      // If file didn't exist previously and has created new file
-      if(checker){
-        try {
-          // Pass in the file name to the TextDumper
-          dumper.setFl(fileName);
-
-          // Dump all the information onto the file
-          dumper.dump(bill);
-        }catch(IOException e){
-          // Catch the IOException thrown from the dump method
-          System.err.println("Creating new file and writing has failed");
-          System.exit(1);
-        }
-      }
-      // If the text file already exist with that name
-      else{
-        // If the file exists but empty then error
-        if(fl.length() == 0){
-          System.err.println("Nothing in the file. Invalid file.");
-          System.exit(1);
-        }
-
-        try {
-          // Set up the parser with the file name
-          parser.setFl(fileName);
-
-          // Retrieve the AbstractPhoneBill returned by file parsing
-          AbstractPhoneBill getBill = parser.parse();
-
-          // If text file's customer and command line's customer does not match then error
-          if(!getBill.getCustomer().equals(bill.getCustomer())){
-            System.err.println("Input Phone Bill customer name does not match the file's customer name");
-            System.exit(1);
-          }
-
-          // Check if the command line's PhoneCall already exist
-          checkCallDupli(getBill.getPhoneCalls(), call);
-
-          // Add the command line's PhoneCall to the retrieved PhoneBill
-          getBill.addPhoneCall(call);
-
-          // Sort out
-          Collections.sort((ArrayList)getBill.getPhoneCalls());
-
-          // Copy the PhoneBill so that next recursion can also use it
-          bill.setCustomer(getBill.getCustomer().split(" "));
-          bill.setPhoneCalls(getBill.getPhoneCalls());
-
-          // Catch IOException because it's dump not parse
-          try {
-            // Set up the dumper with the file name and dump
-            dumper.setFl(fileName);
-            dumper.dump(getBill);
-          }catch(IOException e){
-            System.err.println("Writing onto file failed after reading from " + fileName);
-            System.exit(1);
-          }
-        }catch(ParserException e){          // If Parsing was invalid
-          System.err.println("Couldn't parse the " + fileName + " file");
-          System.exit(1);
-        }
-      }
-    }catch(IOException e){      // If initial file I/O was a failure
-      System.err.println("File I/O has failed");
-      System.exit(1);
-    }
-  }
-
   /**
    * Check if the certain PhoneCall object already exist in the list
    *
@@ -751,42 +655,45 @@ public class Project3 {
    *         PhoneCall class initialized from command line
    */
   public static void prettyParse(String fileName, PrettyPrinter printer, TextParser parser, PhoneBill parsebill, PhoneBill bill, PhoneCall call){
-    try{
-      // Parse the file
-      parser.setFl(fileName);
-      AbstractPhoneBill getBill = parser.parse();
+    File f = new File(fileName);
 
-      // If text file's customer and command line's customer does not match then error
-      if(!parsebill.getCustomer().equals(bill.getCustomer())){
-        System.err.println("Input Phone Bill customer name does not match the file's customer name");
+    // Check if the file is empty
+    if(f.length() > 0) {
+      try {
+        // Parse the file
+        parser.setFl(fileName);
+        AbstractPhoneBill getBill = parser.parse();
+
+        // If text file's customer and command line's customer does not match then error
+        if (!parsebill.getCustomer().equals(bill.getCustomer())) {
+          System.err.println("Input Phone Bill customer name does not match the file's customer name");
+          System.exit(1);
+        }
+
+        // Check duplicate
+        int ch = checkPrettyCallDupli(getBill.getPhoneCalls(), call);
+
+        if (ch == 0) {
+          getBill.addPhoneCall(call);
+        }
+
+        // Copy the parsed PhoneBill data for next recursion
+        bill.setCustomer(getBill.getCustomer().split(" "));
+        bill.setPhoneCalls(getBill.getPhoneCalls());
+
+        // sort order
+        Collections.sort((ArrayList) getBill.getPhoneCalls());
+      } catch (ParserException e) {
+        System.err.println("Pretty Print's file reading failed");
         System.exit(1);
       }
-
-      // Check duplicate
-      int ch = checkPrettyCallDupli(getBill.getPhoneCalls(), call);
-
-      if(ch == 0) {
-        getBill.addPhoneCall(call);
-      }
-
-      // Copy the parsed PhoneBill data for next recursion
-      bill.setCustomer(getBill.getCustomer().split(" "));
-      bill.setPhoneCalls(getBill.getPhoneCalls());
-
-      // sort order
-      Collections.sort((ArrayList)getBill.getPhoneCalls());
-
-      try{
-        // use pretty printer's dump
-        printer.dump(getBill);
-      }
-      catch(IOException e){
-        System.err.println("Pretty Print's dumping failed");
-        System.exit(1);
-      }
-
-    }catch(ParserException e){
-      System.err.println("Pretty Print's file reading failed");
+    }
+    Collections.sort((ArrayList) bill.getPhoneCalls());
+    try {
+      // use pretty printer's dump
+      printer.dump(bill);
+    } catch (IOException e) {
+      System.err.println("Pretty Print's dumping failed");
       System.exit(1);
     }
   }
