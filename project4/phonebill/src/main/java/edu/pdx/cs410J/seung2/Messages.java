@@ -67,6 +67,8 @@ public class Messages
 
                 PhoneCall tmp = new PhoneCall(caller, callee, start, end);
 
+                System.out.println("Temp " + i + ": " + tmp.toString());
+
                 bill.addPhoneCall(tmp);
             }
         }
