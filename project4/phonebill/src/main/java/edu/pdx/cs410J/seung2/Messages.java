@@ -30,6 +30,8 @@ public class Messages
         format += "Duration: " + duration + " min\n";
         format += "\n****************************************************\n\n";
 
+        System.out.println("From Pretty: " + format);
+
         return format;
     }
 
