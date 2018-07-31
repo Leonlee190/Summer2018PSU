@@ -111,6 +111,8 @@ public class PhoneBillServlet extends HttpServlet
 
         PhoneCall call = new PhoneCall(callerNum, calleeNum, Starting, Ending);
 
+        System.out.println("Added: " + call.toString());
+
         bill.addPhoneCall(call);
 
         PrintWriter pw = response.getWriter();
