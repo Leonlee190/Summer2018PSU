@@ -57,7 +57,7 @@ public class Messages
         for (int i = 1; i < lines.length; i++) {
             String[] args = lines[i].split(" ");
 
-            if(args.length == 8) {
+            if(args.length > 0) {
                 Project4.checkNumber(args[0], "caller");
                 String caller = args[0];
                 Project4.checkNumber(args[1], "callee");
