@@ -26,41 +26,4 @@ public class PhoneBillRestClientIT {
     int port = Integer.parseInt(PORT);
     return new PhoneBillRestClient(HOSTNAME, port);
   }
-
-  @Ignore
-  @Test
-  public void test0RemoveAllDictionaryEntries() throws IOException {
-    PhoneBillRestClient client = newPhoneBillRestClient();
-    client.removeAllPhoneBill();
-  }
-
-  @Ignore
-  @Test
-  public void test1EmptyServerContainsNoDictionaryEntries() throws IOException {
-    PhoneBillRestClient client = newPhoneBillRestClient();
-    Map<String, String> dictionary = client.getAllPhoneCalls();
-    assertThat(dictionary.size(), equalTo(0));
-  }
-
-  @Ignore
-  @Test
-  public void test2DefineOneWord() throws IOException {
-    PhoneBillRestClient client = newPhoneBillRestClient();
-    String testWord = "TEST WORD";
-    String testDefinition = "TEST DEFINITION";
-    client.addPhoneCall(testWord, testDefinition);
-
-    String definition = client.getDefinition(testWord);
-    assertThat(definition, equalTo(testDefinition));
-  }
-
-  @Ignore
-  @Test
-  public void test4MissingRequiredParameterReturnsPreconditionFailed() throws IOException {
-    PhoneBillRestClient client = newPhoneBillRestClient();
-    HttpRequestHelper.Response response = client.postToMyURL();
-    assertThat(response.getContent(), containsString(Messages.missingRequiredParameter("word")));
-    assertThat(response.getCode(), equalTo(HttpURLConnection.HTTP_PRECON_FAILED));
-  }
-
 }
