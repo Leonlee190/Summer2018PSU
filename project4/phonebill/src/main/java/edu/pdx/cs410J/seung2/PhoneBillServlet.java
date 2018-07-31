@@ -113,6 +113,10 @@ public class PhoneBillServlet extends HttpServlet
 
         System.out.println("Added: " + call.toString());
 
+        if(bill.getCustomer() == null){
+            bill.setCustomer(customerName.split(" "));
+        }
+
         bill.addPhoneCall(call);
 
         System.out.println("PhoneBill: " + bill.toString());

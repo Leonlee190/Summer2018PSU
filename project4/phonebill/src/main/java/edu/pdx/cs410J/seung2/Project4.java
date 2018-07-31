@@ -58,6 +58,8 @@ public class Project4 {
             }
             else{
                 Collection<PhoneCall> temp = client.getAllPhoneCalls();
+                System.out.println("Size: " + temp.size());
+                System.out.println("Stuff: " + temp.toString());
                 StringWriter sw = new StringWriter();
                 Messages.formatPrettyBill(new PrintWriter(sw, true), temp);
                 String msg = sw.toString();
