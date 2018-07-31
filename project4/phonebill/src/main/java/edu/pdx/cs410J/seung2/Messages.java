@@ -54,6 +54,8 @@ public class Messages
         PhoneBill bill = new PhoneBill();
 
         String[] lines = content.split("\n");
+
+        System.out.println("line size: " + lines.length);
         for (int i = 1; i < lines.length; i++) {
             String[] args = lines[i].split(" ");
 
