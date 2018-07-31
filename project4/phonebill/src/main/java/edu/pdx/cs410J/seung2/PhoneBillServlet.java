@@ -1,7 +1,5 @@
 package edu.pdx.cs410J.seung2;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This servlet ultimately provides a REST API for working with an
@@ -22,11 +18,11 @@ public class PhoneBillServlet extends HttpServlet
 {
     static PhoneBill bill = new PhoneBill();
 
-    private static String customer = "customer";
-    private static String caller = "caller";
-    private static String callee = "callee";
-    private static String start = "startTime";
-    private static String end = "endTime";
+    private static String CUSTOMER_PARA = "customer";
+    private static String CALLER_PARA = "caller";
+    private static String CALLEE_PARA = "callee";
+    private static String START_PARA = "startTime";
+    private static String END_PARA = "endTime";
 
     /**
      * Handles an HTTP GET request from a client by writing the definition of the
@@ -39,23 +35,22 @@ public class PhoneBillServlet extends HttpServlet
     {
         response.setContentType( "text/plain" );
 
-        String customerName = getParameter( customer, request );
+        String customerName = getParameter(CUSTOMER_PARA, request );
         if (customerName == null) {
-            missingRequiredParameter(response, customer);
+            missingRequiredParameter(response, CUSTOMER_PARA);
             return;
         }
-        String startT = getParameter(start, request);
-        String endT = getParameter(end, request);
+        String startT = getParameter(START_PARA, request);
+        String endT = getParameter(END_PARA, request);
 
         if(bill.getCustomer() == null){
-            System.err.println("Empty Bill");
-            System.exit(1);
+            missingRequiredParameter(response, CUSTOMER_PARA);
+            return;
         }
         else if(!customerName.equals(bill.getCustomer())){
-            System.err.println("Server data does not match the customer data");
-            System.exit(1);
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer name doesn't match");
+            return;
         }
-
         if ( startT == null && endT == null) {
             writeAllPhoneBillPretty(response);
         } else {
@@ -73,31 +68,31 @@ public class PhoneBillServlet extends HttpServlet
     {
         response.setContentType( "text/plain" );
 
-        String customerName = getParameter(customer, request );
+        String customerName = getParameter(CUSTOMER_PARA, request );
         if (customerName == null) {
-            missingRequiredParameter(response, customer);
+            missingRequiredParameter(response, CUSTOMER_PARA);
             return;
         }
 
-        String callerNum = getParameter(caller, request );
+        String callerNum = getParameter(CALLER_PARA, request );
         if ( callerNum == null) {
             missingRequiredParameter( response, callerNum );
             return;
         }
 
-        String calleeNum = getParameter(callee, request );
+        String calleeNum = getParameter(CALLEE_PARA, request );
         if ( calleeNum == null) {
             missingRequiredParameter(response, callerNum);
             return;
         }
 
-        String sDate = getParameter(start, request);
+        String sDate = getParameter(START_PARA, request);
         if(sDate == null){
             missingRequiredParameter(response, sDate);
             return;
         }
 
-        String eDate = getParameter(end, request);
+        String eDate = getParameter(END_PARA, request);
         if(eDate == null){
             missingRequiredParameter(response, eDate);
             return;
@@ -120,6 +115,7 @@ public class PhoneBillServlet extends HttpServlet
         bill.addPhoneCall(call);
 
         System.out.println("PhoneBill: " + bill.toString());
+        System.out.println("Calls: " + bill.getPhoneCalls().toString());
 
         PrintWriter pw = response.getWriter();
         pw.println(Messages.formatPrettyCall(call));
