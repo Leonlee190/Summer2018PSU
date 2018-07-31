@@ -22,7 +22,7 @@ public class Project4IT extends InvokeMainTestCase {
     @Test
     public void test0RemoveAllMappings() throws IOException {
       PhoneBillRestClient client = new PhoneBillRestClient(HOSTNAME, Integer.parseInt(PORT));
-      client.removeAllDictionaryEntries();
+      client.removeAllPhoneBill();
     }
 
     @Test
@@ -37,7 +37,7 @@ public class Project4IT extends InvokeMainTestCase {
         MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT );
         assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
         String out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatWordCount(0)));
+        assertThat(out, out, containsString(Messages.formatCallCount(0)));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class Project4IT extends InvokeMainTestCase {
         MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT, word );
         assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
         String out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, null)));
+        assertThat(out, out, containsString(Messages.formatPrettyBill(word, null)));
     }
 
     @Test
@@ -61,10 +61,10 @@ public class Project4IT extends InvokeMainTestCase {
 
         result = invokeMain( Project4.class, HOSTNAME, PORT, word );
         out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, definition)));
+        assertThat(out, out, containsString(Messages.formatPrettyBill(word, definition)));
 
         result = invokeMain( Project4.class, HOSTNAME, PORT );
         out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, definition)));
+        assertThat(out, out, containsString(Messages.formatPrettyBill(word, definition)));
     }
 }

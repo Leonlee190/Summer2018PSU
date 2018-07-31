@@ -4,7 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import edu.pdx.cs410J.web.HttpRequestHelper;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.Collection;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
@@ -34,32 +34,29 @@ public class PhoneBillRestClient extends HttpRequestHelper
     /**
      * Returns all dictionary entries from the server
      */
-    public Map<String, String> getAllDictionaryEntries() throws IOException {
+    public Collection<PhoneCall> getAllPhoneCalls() throws IOException {
       Response response = get(this.url);
-      return Messages.parseDictionary(response.getContent());
+      return Messages.parsePhoneBill(response.getContent());
     }
 
-    /**
-     * Returns the definition for the given word
-     */
-    public String getDefinition(String word) throws IOException {
-      Response response = get(this.url, "word", word);
-      throwExceptionIfNotOkayHttpStatus(response);
-      String content = response.getContent();
-      return Messages.parseDictionaryEntry(content).getValue();
-    }
-
-    public void addDictionaryEntry(String word, String definition) throws IOException {
-      Response response = postToMyURL("word", word, "definition", definition);
+    public void addPhoneCall(String customerName, PhoneCall call) throws IOException {
+        String[] postParameters = {
+                "customer", customerName,
+                "caller", call.getCaller(),
+                "callee", call.getCallee(),
+                "startTime", call.getStartTimeString(),
+                "endTime", call.getEndTimeString(),
+        };
+      Response response = postToMyURL(postParameters);
       throwExceptionIfNotOkayHttpStatus(response);
     }
 
     @VisibleForTesting
-    Response postToMyURL(String... dictionaryEntries) throws IOException {
-      return post(this.url, dictionaryEntries);
+    Response postToMyURL(String... callVariables) throws IOException {
+      return post(this.url, callVariables);
     }
 
-    public void removeAllDictionaryEntries() throws IOException {
+    public void removeAllPhoneBill() throws IOException {
       Response response = delete(this.url);
       throwExceptionIfNotOkayHttpStatus(response);
     }

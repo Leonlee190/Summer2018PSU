@@ -49,6 +49,8 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall>{
         // Check if the adding is correctly done
         boolean checker = this.calls.add(phoneCall);
 
+        Collections.sort((ArrayList) calls);
+
         // If not added correctly then error
         if(!checker){
             System.err.println("Adding phonecall to the phonebill was unsuccessful");

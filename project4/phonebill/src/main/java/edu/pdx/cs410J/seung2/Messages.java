@@ -1,8 +1,7 @@
 package edu.pdx.cs410J.seung2;
 
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,14 +11,26 @@ import java.util.regex.Pattern;
  */
 public class Messages
 {
-    public static String formatWordCount(int count )
+    public static String formatCallCount(int count )
     {
-        return String.format( "Dictionary on server contains %d words", count );
+        return String.format( "%d PhoneCalls in the list", count );
     }
 
-    public static String formatDictionaryEntry(String word, String definition )
+    public static String formatPrettyCall(PhoneCall call)
     {
-        return String.format("  %s : %s", word, definition);
+        String format = "";
+
+        long duration = call.getEndTime().getTime() - call.getStartTime().getTime();
+        duration /= 60000;
+
+        format += "Caller #: " + call.getCaller() + "\n";
+        format += "Callee #: " + call.getCallee() + "\n";
+        format += "Start Time: " + call.getStartTimeString() + "\n";
+        format += "End Time: " + call.getEndTimeString() + "\n";
+        format += "Duration: " + duration + " min\n";
+        format += "\n****************************************************\n\n";
+
+        return format;
     }
 
     public static String missingRequiredParameter( String parameterName )
@@ -27,64 +38,40 @@ public class Messages
         return String.format("The required parameter \"%s\" is missing", parameterName);
     }
 
-    public static String definedWordAs(String word, String definition )
-    {
-        return String.format( "Defined %s as %s", word, definition );
+    public static String allPhoneCallListDeleted() {
+        return "All PhoneCall entries have been deleted";
     }
 
-    public static String allDictionaryEntriesDeleted() {
-        return "All dictionary entries have been deleted";
-    }
+    public static void formatPrettyBill(PrintWriter pw, Collection<PhoneCall> calls) {
+        pw.println(Messages.formatCallCount(calls.size()));
 
-    public static Map.Entry<String, String> parseDictionaryEntry(String content) {
-        Pattern pattern = Pattern.compile("\\s*(.*) : (.*)");
-        Matcher matcher = pattern.matcher(content);
-
-        if (!matcher.find()) {
-            return null;
-        }
-
-        return new Map.Entry<>() {
-            @Override
-            public String getKey() {
-                return matcher.group(1);
-            }
-
-            @Override
-            public String getValue() {
-                String value = matcher.group(2);
-                if ("null".equals(value)) {
-                    value = null;
-                }
-                return value;
-            }
-
-            @Override
-            public String setValue(String value) {
-                throw new UnsupportedOperationException("This method is not implemented yet");
-            }
-        };
-    }
-
-    public static void formatDictionaryEntries(PrintWriter pw, Map<String, String> dictionary) {
-        pw.println(Messages.formatWordCount(dictionary.size()));
-
-        for (Map.Entry<String, String> entry : dictionary.entrySet()) {
-            pw.println(Messages.formatDictionaryEntry(entry.getKey(), entry.getValue()));
+        for (PhoneCall call : calls) {
+            pw.println(Messages.formatPrettyCall(call));
         }
     }
 
-    public static Map<String, String> parseDictionary(String content) {
-        Map<String, String> map = new HashMap<>();
+    public static Collection<PhoneCall> parsePhoneBill(String content) {
+        PhoneBill bill = new PhoneBill();
 
         String[] lines = content.split("\n");
         for (int i = 1; i < lines.length; i++) {
-            String line = lines[i];
-            Map.Entry<String, String> entry = parseDictionaryEntry(line);
-            map.put(entry.getKey(), entry.getValue());
+            String[] args = lines[i].split(" ");
+
+            if(args.length == 8) {
+                Project4.checkNumber(args[0], "caller");
+                String caller = args[0];
+                Project4.checkNumber(args[1], "callee");
+                String callee = args[1];
+                Date start = Project4.initDate(args[2], args[3], args[4]);
+                Date end = Project4.initDate(args[5], args[6], args[7]);
+
+                PhoneCall tmp = new PhoneCall(caller, callee, start, end);
+
+                bill.addPhoneCall(tmp);
+            }
         }
 
-        return map;
+        return bill.getPhoneCalls();
     }
 
 }

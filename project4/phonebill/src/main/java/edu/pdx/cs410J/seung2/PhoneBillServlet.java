@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,10 +20,13 @@ import java.util.Map;
  */
 public class PhoneBillServlet extends HttpServlet
 {
-    static final String WORD_PARAMETER = "word";
-    static final String DEFINITION_PARAMETER = "definition";
+    static PhoneBill bill = new PhoneBill();
 
-    private final Map<String, String> dictionary = new HashMap<>();
+    private static String customer = "customer";
+    private static String caller = "caller";
+    private static String callee = "callee";
+    private static String start = "startTime";
+    private static String end = "endTime";
 
     /**
      * Handles an HTTP GET request from a client by writing the definition of the
@@ -35,12 +39,27 @@ public class PhoneBillServlet extends HttpServlet
     {
         response.setContentType( "text/plain" );
 
-        String word = getParameter( WORD_PARAMETER, request );
-        if (word != null) {
-            writeDefinition(word, response);
+        String customerName = getParameter( customer, request );
+        if (customerName == null) {
+            missingRequiredParameter(response, customer);
+            return;
+        }
+        String startT = getParameter(start, request);
+        String endT = getParameter(end, request);
 
+        if(bill.getCustomer() == null){
+            System.err.println("Empty Bill");
+            System.exit(1);
+        }
+        else if(!customerName.equals(bill.getCustomer())){
+            System.err.println("Server data does not match the customer data");
+            System.exit(1);
+        }
+
+        if ( startT == null && endT == null) {
+            writeAllPhoneBillPretty(response);
         } else {
-            writeAllDictionaryEntries(response);
+            writeAllPhoneBillPretty(response);
         }
     }
 
@@ -54,22 +73,48 @@ public class PhoneBillServlet extends HttpServlet
     {
         response.setContentType( "text/plain" );
 
-        String word = getParameter(WORD_PARAMETER, request );
-        if (word == null) {
-            missingRequiredParameter(response, WORD_PARAMETER);
+        String customerName = getParameter(customer, request );
+        if (customerName == null) {
+            missingRequiredParameter(response, customer);
             return;
         }
 
-        String definition = getParameter(DEFINITION_PARAMETER, request );
-        if ( definition == null) {
-            missingRequiredParameter( response, DEFINITION_PARAMETER );
+        String callerNum = getParameter(caller, request );
+        if ( callerNum == null) {
+            missingRequiredParameter( response, callerNum );
             return;
         }
 
-        this.dictionary.put(word, definition);
+        String calleeNum = getParameter(callee, request );
+        if ( calleeNum == null) {
+            missingRequiredParameter(response, callerNum);
+            return;
+        }
+
+        String sDate = getParameter(start, request);
+        if(sDate == null){
+            missingRequiredParameter(response, sDate);
+            return;
+        }
+
+        String eDate = getParameter(end, request);
+        if(eDate == null){
+            missingRequiredParameter(response, eDate);
+            return;
+        }
+
+        String[] startDate = sDate.split(" ");
+        String[] endDate = eDate.split(" ");
+
+        Date Starting = Project4.initDate(startDate[0], startDate[1], startDate[2]);
+        Date Ending = Project4.initDate(endDate[0], endDate[1], endDate[2]);
+
+        PhoneCall call = new PhoneCall(callerNum, calleeNum, Starting, Ending);
+
+        bill.addPhoneCall(call);
 
         PrintWriter pw = response.getWriter();
-        pw.println(Messages.definedWordAs(word, definition));
+        pw.println(Messages.formatPrettyCall(call));
         pw.flush();
 
         response.setStatus( HttpServletResponse.SC_OK);
@@ -84,10 +129,10 @@ public class PhoneBillServlet extends HttpServlet
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
 
-        this.dictionary.clear();
+        this.bill.getPhoneCalls().clear();
 
         PrintWriter pw = response.getWriter();
-        pw.println(Messages.allDictionaryEntriesDeleted());
+        pw.println(Messages.allPhoneCallListDeleted());
         pw.flush();
 
         response.setStatus(HttpServletResponse.SC_OK);
@@ -107,33 +152,15 @@ public class PhoneBillServlet extends HttpServlet
     }
 
     /**
-     * Writes the definition of the given word to the HTTP response.
-     *
-     * The text of the message is formatted with
-     * {@link Messages#formatDictionaryEntry(String, String)}
-     */
-    private void writeDefinition(String word, HttpServletResponse response ) throws IOException
-    {
-        String definition = this.dictionary.get(word);
-
-        PrintWriter pw = response.getWriter();
-        pw.println(Messages.formatDictionaryEntry(word, definition));
-
-        pw.flush();
-
-        response.setStatus( HttpServletResponse.SC_OK );
-    }
-
-    /**
      * Writes all of the dictionary entries to the HTTP response.
      *
      * The text of the message is formatted with
-     * {@link Messages#formatDictionaryEntry(String, String)}
+     * {@link Messages#formatPrettyBill(PrintWriter, java.util.Collection<PhoneCall>)}
      */
-    private void writeAllDictionaryEntries(HttpServletResponse response ) throws IOException
+    private void writeAllPhoneBillPretty(HttpServletResponse response ) throws IOException
     {
         PrintWriter pw = response.getWriter();
-        Messages.formatDictionaryEntries(pw, dictionary);
+        Messages.formatPrettyBill(pw, bill.getPhoneCalls());
 
         pw.flush();
 
@@ -155,10 +182,4 @@ public class PhoneBillServlet extends HttpServlet
         return value;
       }
     }
-
-    @VisibleForTesting
-    String getDefinition(String word) {
-        return this.dictionary.get(word);
-    }
-
 }
