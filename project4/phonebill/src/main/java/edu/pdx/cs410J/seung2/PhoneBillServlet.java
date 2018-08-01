@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -39,7 +43,24 @@ public class PhoneBillServlet extends HttpServlet
         String startT = getParameter(START_PARA, request);
         String endT = getParameter(END_PARA, request);
 
-        writeAllPhoneBillPretty(response);
+        if(bill.getCustomer() == null){
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Empty PhoneBill");
+            return;
+        }
+        else if(!bill.getCustomer().equals(customerName)){
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer name does not match");
+            return;
+        }
+        if(startT == null && endT == null) {
+            writeAllPhoneBillPretty(response);
+        }
+        else if(startT != null && endT != null){
+            writeSearchPhoneBillPretty(startT, endT, response);
+        }
+        else{
+            missingRequiredParameter(response, "one of dates");
+            return;
+        }
     }
 
     /**
@@ -82,6 +103,14 @@ public class PhoneBillServlet extends HttpServlet
             return;
         }
 
+        if(bill.getCustomer() == null){
+            bill.setCustomer(customerName.split(" "));
+        }
+        else if(!bill.getCustomer().equals(customerName)){
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer name does not match");
+            return;
+        }
+
         String[] startDate = sDate.split(" ");
         String[] endDate = eDate.split(" ");
 
@@ -89,10 +118,6 @@ public class PhoneBillServlet extends HttpServlet
         Date Ending = Project4.initDate(endDate[0], endDate[1], endDate[2]);
 
         PhoneCall call = new PhoneCall(callerNum, calleeNum, Starting, Ending);
-
-        if(bill.getCustomer() == null){
-            bill.setCustomer(customerName.split(" "));
-        }
 
         bill.addPhoneCall(call);
 
@@ -140,6 +165,39 @@ public class PhoneBillServlet extends HttpServlet
     {
         PrintWriter pw = response.getWriter();
         Messages.formatPrettyBill(pw, bill.getPhoneCalls());
+
+        pw.flush();
+
+        response.setStatus( HttpServletResponse.SC_OK );
+    }
+
+    private void writeSearchPhoneBillPretty(String start, String end, HttpServletResponse response) throws IOException
+    {
+        PrintWriter pw = response.getWriter();
+        Date startT = null;
+        Date endT = null;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+        try{
+            startT = sdf.parse(start);
+            endT = sdf.parse(end);
+        }catch(ParseException e){
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Unable to parse date while searching PhoneBill");
+            return;
+        }
+
+        Collection<PhoneCall> billcall = bill.getPhoneCalls();
+
+        PhoneBill temp = new PhoneBill();
+        temp.setCustomer(bill.getCustomer().split(" "));
+
+        for(PhoneCall call : billcall){
+            if(call.getStartTime().getTime() >= startT.getTime() && call.getEndTime().getTime() <= endT.getTime()){
+                temp.addPhoneCall(call);
+            }
+        }
+
+        Messages.formatPrettyBill(pw, temp.getPhoneCalls());
 
         pw.flush();
 

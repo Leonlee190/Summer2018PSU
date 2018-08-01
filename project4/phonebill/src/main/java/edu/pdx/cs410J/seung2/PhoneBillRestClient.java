@@ -4,6 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import edu.pdx.cs410J.web.HttpRequestHelper;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
@@ -20,6 +21,7 @@ public class PhoneBillRestClient extends HttpRequestHelper
     private static final String SERVLET = "calls";
 
     private final String url;
+    private SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy hh:mm a"); // Date formatter
 
 
     /**
@@ -41,7 +43,10 @@ public class PhoneBillRestClient extends HttpRequestHelper
     }
 
     public Collection<PhoneCall> getSearchCalls(Date start, Date end) throws IOException{
-        Response response = get(this.url);
+        String startT = ft.format(start);
+        String endT = ft.format(end);
+
+        Response response = get(this.url, "startTime", startT, "endTime", endT);
         return Messages.parseSearchCalls(response.getContent(), start, end);
     }
 
