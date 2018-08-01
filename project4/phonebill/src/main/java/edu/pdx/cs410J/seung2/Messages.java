@@ -113,4 +113,28 @@ public class Messages
         return call;
     }
 
+    public static Collection<PhoneCall> parseSearchCalls(String content, Date start, Date end){
+        PhoneBill bill = new PhoneBill();
+
+        String[] lines = content.split("\n");
+
+        String[] feeder = new String[4];
+
+        for (int i = 1; i < lines.length; i+=9) {
+            feeder[0] = lines[i];
+            feeder[1] = lines[i+1];
+            feeder[2] = lines[i+2];
+            feeder[3] = lines[i+3];
+
+            PhoneCall tmp = parsePhoneCall(feeder);
+
+            if((tmp.getStartTime().getTime() >= start.getTime()) && (tmp.getEndTime().getTime() <= end.getTime())){
+                bill.addPhoneCall(tmp);
+            }
+        }
+
+        return bill.getPhoneCalls();
+
+    }
+
 }

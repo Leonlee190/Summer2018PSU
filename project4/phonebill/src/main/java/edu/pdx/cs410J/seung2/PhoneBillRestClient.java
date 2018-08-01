@@ -5,6 +5,7 @@ import edu.pdx.cs410J.web.HttpRequestHelper;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Date;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
@@ -37,6 +38,11 @@ public class PhoneBillRestClient extends HttpRequestHelper
     public Collection<PhoneCall> getAllPhoneCalls() throws IOException {
       Response response = get(this.url);
       return Messages.parsePhoneBill(response.getContent());
+    }
+
+    public Collection<PhoneCall> getSearchCalls(Date start, Date end) throws IOException{
+        Response response = get(this.url);
+        return Messages.parseSearchCalls(response.getContent(), start, end);
     }
 
     public void addPhoneCall(String customerName, PhoneCall call) throws IOException {

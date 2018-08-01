@@ -1,6 +1,5 @@
 package edu.pdx.cs410J.seung2;
 
-import edu.pdx.cs410J.PhoneBillDumper;
 import edu.pdx.cs410J.web.HttpRequestHelper;
 
 import java.io.IOException;
@@ -18,33 +17,80 @@ import java.text.SimpleDateFormat;
  */
 public class Project4 {
 
+    public static String README = "\nCourse: CS 401J\nProject 1: Designing a Phone Bill Application\nProgrammer: SeungJun Lee" +
+            "\nDescription: This project parses the user's command line arguments and initialize PhoneCall class and PhoneBill class or " +
+            "executes options given by the user.\n             PhoneBill will store the customer's name and collection of PhoneCall data." +
+            "\n             PhoneCall will store caller and callee's number and starting and ending date and time.\n\nUsage: java edu.pdx.cs410J.<login-id>.Project1 [options] <args>\n\n" +
+            "Arguments are in this order: with example format\n" +
+            "   - Customer: \"First Last\" or \"First Middle Last\"\n   - Caller Number: XXX-XXX-XXXX\n   - Callee Number: XXX-XXX-XXXX\n   - Start Time: MM/DD/YYYY HH:MM\n   - End Time: MM/DD/YYYY HH:MM" +
+            "\n\nOptions:\n    -print : Prints a description of the new phone call\n          -> If no information has been provided with print function then it will print error" +
+            "\n    -README : Prints a README for this project and exits\n          -> Which you have currently!";
+
     public static final String MISSING_ARGS = "Missing command line arguments";
+    public static String hostName = null;
+    public static String portNum = null;
+    static int print = 0;
+    static int search = 0;
 
     public static void main(String... args) {
         PhoneBill bill = null;
         PhoneCall call = null;
-        String first = args[0];
-        String hostName = args[2];
-        String portNum = args[4];
+        Date start = null;
+        Date end = null;
 
-        if(first.equals("abc")) {
-            String name = args[5];
-            String caller = args[6];
-            String callee = args[7];
-            String sDate = args[8];
-            String sTime = args[9];
-            String sAP = args[10];
-            String eDate = args[11];
-            String eTime = args[12];
-            String eAP = args[13];
+        for(int i = 0; i < args.length; i++){
+            if(args[i].equals("-README")){
+                System.out.println(README);
+                System.exit(0);
+            }
+            else if(args[i].equals("-print")){
+                print = 1;
+            }
+            else if(args[i].equals("-host")){
+                hostName = args[i + 1];
+                i++;
+            }
+            else if(args[i].equals("-port")){
+                portNum = args[i + 1];
+                boolean intCheck = isInt(portNum);
 
-            Date start = initDate(sDate, sTime, sAP);
-            Date end = initDate(eDate, eTime, eAP);
+                if(!intCheck){
+                    System.err.println("Port number isn't an integer");
+                    System.exit(1);
+                }
 
-            call = new PhoneCall(caller, callee, start, end);
+                i++;
+            }
+            else if(args[i].equals("-search")){
+                search = 1;
+            }
+            else if((args.length - i) == 9){
+                String name = args[i];
+                String caller = args[i+1];
+                String callee = args[i+2];
+                String sDate = args[i+3];
+                String sTime = args[i+4];
+                String sAP = args[i+5];
+                String eDate = args[i+6];
+                String eTime = args[i+7];
+                String eAP = args[i+8];
 
-            bill = new PhoneBill();
-            bill.setCustomer(name.split(" "));
+                start = initDate(sDate, sTime, sAP);
+                end = initDate(eDate, eTime, eAP);
+                checkTimeOrder(start, end);
+
+                call = new PhoneCall(caller, callee, start, end);
+                bill = new PhoneBill();
+                bill.setCustomer(name.split(" "));
+            }
+            else{
+                System.out.println(MISSING_ARGS);
+                System.exit(1);
+            }
+        }
+
+        if(print == 1){
+            System.out.println(call.toString());
         }
 
         int port = Integer.parseInt(portNum);
@@ -52,15 +98,24 @@ public class Project4 {
         PhoneBillRestClient client = new PhoneBillRestClient(hostName, port);
 
         try {
-            if(first.equals("abc")) {
+            if(call != null) {
                 client.addPhoneCall(bill.getCustomer(), call);
             }
             else{
-                Collection<PhoneCall> temp = client.getAllPhoneCalls();
-                StringWriter sw = new StringWriter();
-                Messages.formatPrettyBill(new PrintWriter(sw, true), temp);
-                String msg = sw.toString();
-                System.out.println(msg);
+                if(search == 0) {
+                    Collection<PhoneCall> temp = client.getAllPhoneCalls();
+                    StringWriter sw = new StringWriter();
+                    Messages.formatPrettyBill(new PrintWriter(sw, true), temp);
+                    String msg = sw.toString();
+                    System.out.println(msg);
+                }
+                else{
+                    Collection<PhoneCall> temp = client.getSearchCalls(start, end);
+                    StringWriter sw = new StringWriter();
+                    Messages.formatPrettyBill(new PrintWriter(sw, true), temp);
+                    String msg = sw.toString();
+                    System.out.println(msg);
+                }
             }
         }catch(IOException e){
             e.printStackTrace();
@@ -349,4 +404,10 @@ public class Project4 {
         return date;
     }
 
+    public static void checkTimeOrder(Date start, Date end){
+        if(start.getTime() > end.getTime()){
+            System.err.println("Start time starts latter than end time");
+            System.exit(1);
+        }
+    }
 }
