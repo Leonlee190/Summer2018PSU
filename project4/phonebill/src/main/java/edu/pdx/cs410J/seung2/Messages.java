@@ -30,7 +30,9 @@ public class Messages
         format += "Duration: " + duration + " min\n";
         format += "\n****************************************************\n\n";
 
-        return String.format(format);
+        System.out.println("\nPretty:\n" + format);
+
+        return format;
     }
 
     public static String missingRequiredParameter( String parameterName )
@@ -64,6 +66,9 @@ public class Messages
 
         bill.addPhoneCall(call);
         bill.addPhoneCall(call2);
+
+        formatPrettyCall(call);
+        formatPrettyCall(call2);
 
         /*
         for (int i = 1; i < lines.length; i++) {
