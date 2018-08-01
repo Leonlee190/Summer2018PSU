@@ -106,20 +106,11 @@ public class PhoneBillServlet extends HttpServlet
 
         PhoneCall call = new PhoneCall(callerNum, calleeNum, Starting, Ending);
 
-        System.out.println("Added: " + call.toString());
-
         if(bill.getCustomer() == null){
             bill.setCustomer(customerName.split(" "));
         }
 
         bill.addPhoneCall(call);
-
-        System.out.println("PhoneBill: " + bill.toString());
-        System.out.println("Calls: " + bill.getPhoneCalls().toString());
-
-        PrintWriter pw = response.getWriter();
-        pw.println(Messages.formatPrettyCall(call));
-        pw.flush();
 
         response.setStatus( HttpServletResponse.SC_OK);
     }

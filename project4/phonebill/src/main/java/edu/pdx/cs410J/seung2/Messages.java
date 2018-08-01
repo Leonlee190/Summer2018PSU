@@ -30,8 +30,6 @@ public class Messages
         format += "Duration: " + duration + " min\n";
         format += "\n****************************************************\n\n";
 
-        System.out.println("\nPretty:\n" + format);
-
         return format;
     }
 
@@ -56,21 +54,7 @@ public class Messages
         PhoneBill bill = new PhoneBill();
 
         String[] lines = content.split("\n");
-        Date start = new Date();
-        Date end = new Date(start.getTime() + 10000);
-        Date start2 = new Date(end.getTime() + 10000);
-        Date end2 = new Date(start2.getTime() + 10000);
 
-        PhoneCall call = new PhoneCall("123-456-7890", "789-456-1230", start, end);
-        PhoneCall call2 = new PhoneCall("741-852-9630", "963-852-7410", start2, end2);
-
-        bill.addPhoneCall(call);
-        bill.addPhoneCall(call2);
-
-        formatPrettyCall(call);
-        formatPrettyCall(call2);
-
-        /*
         for (int i = 1; i < lines.length; i++) {
             String[] args = lines[i].split(" ");
 
@@ -84,12 +68,9 @@ public class Messages
 
                 PhoneCall tmp = new PhoneCall(caller, callee, start, end);
 
-                System.out.println("Temp " + i + ": " + tmp.toString());
-
                 bill.addPhoneCall(tmp);
             }
         }
-        */
 
         return bill.getPhoneCalls();
     }
