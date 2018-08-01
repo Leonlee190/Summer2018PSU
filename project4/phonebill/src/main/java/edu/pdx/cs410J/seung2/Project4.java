@@ -59,10 +59,31 @@ public class Project4 {
                     System.exit(1);
                 }
 
+                if(args.length == (i+2)){
+                    break;
+                }
+
                 i++;
             }
             else if(args[i].equals("-search")){
                 search = 1;
+                i++;
+
+                if((args.length - i) < 9){
+                    String name = args[i];
+                    String sDate = args[i+1];
+                    String sTime = args[i+2];
+                    String sAP = args[i+3];
+                    String eDate = args[i+4];
+                    String eTime = args[i+5];
+                    String eAP = args[i+6];
+
+                    start = initDate(sDate, sTime, sAP);
+                    end = initDate(eDate, eTime, eAP);
+                    checkTimeOrder(start, end);
+
+                    break;
+                }
             }
             else if((args.length - i) == 9){
                 String name = args[i];
@@ -83,6 +104,8 @@ public class Project4 {
                 call = new PhoneCall(caller, callee, start, end);
                 bill = new PhoneBill();
                 bill.setCustomer(name.split(" "));
+
+                break;
             }
             else{
                 System.out.println(MISSING_ARGS);
