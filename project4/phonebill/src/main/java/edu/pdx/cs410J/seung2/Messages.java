@@ -1,5 +1,7 @@
 package edu.pdx.cs410J.seung2;
 
+import javafx.css.Match;
+
 import java.io.PrintWriter;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -55,24 +57,60 @@ public class Messages
 
         String[] lines = content.split("\n");
 
-        for (int i = 1; i < lines.length; i++) {
-            String[] args = lines[i].split(" ");
+        String[] feeder = new String[4];
 
-            if(args.length > 0) {
-                Project4.checkNumber(args[0], "caller");
-                String caller = args[0];
-                Project4.checkNumber(args[1], "callee");
-                String callee = args[1];
-                Date start = Project4.initDate(args[2], args[3], args[4]);
-                Date end = Project4.initDate(args[5], args[6], args[7]);
+        for (int i = 1; i < lines.length; i+=9) {
+            feeder[0] = lines[i];
+            feeder[1] = lines[i+1];
+            feeder[2] = lines[i+2];
+            feeder[3] = lines[i+3];
 
-                PhoneCall tmp = new PhoneCall(caller, callee, start, end);
+            PhoneCall tmp = parsePhoneCall(feeder);
 
-                bill.addPhoneCall(tmp);
-            }
+            bill.addPhoneCall(tmp);
         }
 
         return bill.getPhoneCalls();
+    }
+
+    public static PhoneCall parsePhoneCall(String[] content){
+        PhoneCall call = null;
+
+        Pattern pattern = Pattern.compile("\\s*(.*) : (.*)");
+        Matcher matcher1 = pattern.matcher(content[0]);
+        if(!matcher1.find()){
+            return null;
+        }
+        String caller = matcher1.group(2).trim();
+
+        Matcher matcher2 = pattern.matcher(content[1]);
+        if(!matcher2.find()){
+            return null;
+        }
+        String callee = matcher2.group(2).trim();
+
+        Matcher matcher3 = pattern.matcher(content[2]);
+        if(!matcher3.find()){
+            return null;
+        }
+        String startT = matcher3.group(2).trim();
+
+        Matcher matcher4 = pattern.matcher(content[3]);
+        if(!matcher4.find()){
+            return null;
+        }
+        String endT = matcher4.group(2).trim();
+
+        Project4.checkNumber(caller, "caller");
+        Project4.checkNumber(callee, "callee");
+        String[] starter = startT.split(" ");
+        Date start = Project4.initDate(starter[0], starter[1], starter[2]);
+        String[] ender = endT.split(" ");
+        Date end = Project4.initDate(ender[0], ender[1], ender[2]);
+
+        call = new PhoneCall(caller, callee, start, end);
+
+        return call;
     }
 
 }
