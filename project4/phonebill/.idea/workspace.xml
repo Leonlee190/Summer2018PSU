@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ecfe98fb-8397-4af2-8d65-8507308e78ea" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Messages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/PhoneBillRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/PhoneBillRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Project4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/pdx/cs410J/seung2/Project4.java" afterDir="false" />
-    </list>
+    <list default="true" id="ecfe98fb-8397-4af2-8d65-8507308e78ea" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -300,7 +296,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533115365042" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533118137329" />
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/practice" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
@@ -320,7 +316,7 @@
     <configuration name="Project4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.pdx.cs410J.seung2.Project4" />
       <module name="phonebill" />
-      <option name="PROGRAM_PARAMETERS" value="a -host babbage.cs.pdx.edu -port 8080 &quot;Leon Lee&quot; 503-812-8448 503-440-4684 01/02/2018 08:11 am 01/02/2018 09:33 am" />
+      <option name="PROGRAM_PARAMETERS" value="-host babbage.cs.pdx.edu -port 8080 &quot;Leon Lee&quot; 503-812-8448 503-440-4684 01/02/2018 08:11 am 01/02/2018 09:33 am" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="edu.pdx.cs410J.seung2.*" />

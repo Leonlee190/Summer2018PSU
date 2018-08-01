@@ -74,6 +74,7 @@ public class Project4 {
                 String eDate = args[i+6];
                 String eTime = args[i+7];
                 String eAP = args[i+8];
+                i+=8;
 
                 start = initDate(sDate, sTime, sAP);
                 end = initDate(eDate, eTime, eAP);
