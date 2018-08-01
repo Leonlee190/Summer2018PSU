@@ -36,26 +36,10 @@ public class PhoneBillServlet extends HttpServlet
         response.setContentType( "text/plain" );
 
         String customerName = getParameter(CUSTOMER_PARA, request );
-        if (customerName == null) {
-            missingRequiredParameter(response, CUSTOMER_PARA);
-            return;
-        }
         String startT = getParameter(START_PARA, request);
         String endT = getParameter(END_PARA, request);
 
-        if(bill.getCustomer() == null){
-            missingRequiredParameter(response, CUSTOMER_PARA);
-            return;
-        }
-        else if(!customerName.equals(bill.getCustomer())){
-            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer name doesn't match");
-            return;
-        }
-        if ( startT == null && endT == null) {
-            writeAllPhoneBillPretty(response);
-        } else {
-            writeAllPhoneBillPretty(response);
-        }
+        writeAllPhoneBillPretty(response);
     }
 
     /**
@@ -76,25 +60,25 @@ public class PhoneBillServlet extends HttpServlet
 
         String callerNum = getParameter(CALLER_PARA, request );
         if ( callerNum == null) {
-            missingRequiredParameter( response, callerNum );
+            missingRequiredParameter( response, CALLER_PARA );
             return;
         }
 
         String calleeNum = getParameter(CALLEE_PARA, request );
         if ( calleeNum == null) {
-            missingRequiredParameter(response, callerNum);
+            missingRequiredParameter(response, CALLEE_PARA);
             return;
         }
 
         String sDate = getParameter(START_PARA, request);
         if(sDate == null){
-            missingRequiredParameter(response, sDate);
+            missingRequiredParameter(response, START_PARA);
             return;
         }
 
         String eDate = getParameter(END_PARA, request);
         if(eDate == null){
-            missingRequiredParameter(response, eDate);
+            missingRequiredParameter(response, END_PARA);
             return;
         }
 
@@ -140,7 +124,7 @@ public class PhoneBillServlet extends HttpServlet
      * The text of the error message is created by {@link Messages#missingRequiredParameter(String)}
      */
     private void missingRequiredParameter( HttpServletResponse response, String parameterName )
-        throws IOException
+            throws IOException
     {
         String message = Messages.missingRequiredParameter(parameterName);
         response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, message);
@@ -169,12 +153,12 @@ public class PhoneBillServlet extends HttpServlet
      *         <code>null</code> or is the empty string
      */
     private String getParameter(String name, HttpServletRequest request) {
-      String value = request.getParameter(name);
-      if (value == null || "".equals(value)) {
-        return null;
+        String value = request.getParameter(name);
+        if (value == null || "".equals(value)) {
+            return null;
 
-      } else {
-        return value;
-      }
+        } else {
+            return value;
+        }
     }
 }
