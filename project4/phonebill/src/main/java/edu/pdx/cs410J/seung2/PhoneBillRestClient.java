@@ -37,16 +37,16 @@ public class PhoneBillRestClient extends HttpRequestHelper
     /**
      * Returns all dictionary entries from the server
      */
-    public Collection<PhoneCall> getAllPhoneCalls() throws IOException {
-      Response response = get(this.url);
+    public Collection<PhoneCall> getAllPhoneCalls(String name) throws IOException {
+      Response response = get(this.url, "customer", name);
       return Messages.parsePhoneBill(response.getContent());
     }
 
-    public Collection<PhoneCall> getSearchCalls(Date start, Date end) throws IOException{
+    public Collection<PhoneCall> getSearchCalls(String name, Date start, Date end) throws IOException{
         String startT = ft.format(start);
         String endT = ft.format(end);
 
-        Response response = get(this.url, "startTime", startT, "endTime", endT);
+        Response response = get(this.url,"customer", name, "startTime", startT, "endTime", endT);
         return Messages.parseSearchCalls(response.getContent(), start, end);
     }
 
