@@ -76,7 +76,7 @@ public class Messages
     public static PhoneCall parsePhoneCall(String[] content){
         PhoneCall call = null;
 
-        Pattern pattern = Pattern.compile("\\s*(.*) : (.*)");
+        Pattern pattern = Pattern.compile("\\s*(.*): (.*)");
         Matcher matcher1 = pattern.matcher(content[0]);
         if(!matcher1.find()){
             return null;
