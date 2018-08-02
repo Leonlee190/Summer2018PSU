@@ -116,6 +116,11 @@ public class PhoneBillServlet extends HttpServlet
             this.billMap.put(customerName, bill);
         }
         else{
+            int checkDupli = Project4.checkPrettyCallDupli(this.billMap.get(customerName).getPhoneCalls(), call);
+            if(checkDupli == 1){
+                response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, call.toString() + " already exists");
+                return;
+            }
             this.billMap.get(customerName).addPhoneCall(call);
         }
 

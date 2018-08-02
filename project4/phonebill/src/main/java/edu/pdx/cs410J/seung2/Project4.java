@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.util.Collection;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 
 /**
  * The main class that parses the command line and communicates with the
@@ -64,10 +65,6 @@ public class Project4 {
                     name = args[i+2];
                     break;
                 }
-                else if(args.length == (i + 3)){
-                    System.err.println(MISSING_ARGS);
-                    System.exit(1);
-                }
 
                 i++;
             }
@@ -82,7 +79,6 @@ public class Project4 {
                 String eDate = args[i+4];
                 String eTime = args[i+5];
                 String eAP = args[i+6];
-                i+=6;
 
                 start = initDate(sDate, sTime, sAP);
                 end = initDate(eDate, eTime, eAP);
@@ -103,7 +99,6 @@ public class Project4 {
                 String eDate = args[i+6];
                 String eTime = args[i+7];
                 String eAP = args[i+8];
-                i+=8;
 
                 start = initDate(sDate, sTime, sAP);
                 end = initDate(eDate, eTime, eAP);
@@ -442,5 +437,34 @@ public class Project4 {
             System.err.println("Start time starts latter than end time");
             System.exit(1);
         }
+    }
+
+
+    /**
+     * Checking duplication for pretty print because it doesn't System.exit
+     *
+     * @param calls
+     *         PhoneCall class object checking for duplication
+     * @param calling
+     *         List we're checking from
+     * @return
+     *         Return 0 or 1 for result
+     */
+    public static int checkPrettyCallDupli(Collection<PhoneCall> calls, PhoneCall calling){
+        Iterator<PhoneCall> iter = calls.iterator();      // Set up Iterator to go through all the PhoneCalls
+
+        // Keep going until no object is left
+        while(iter.hasNext()){
+            PhoneCall obj = iter.next();
+
+            // If current iteration of PhoneCall is exactly same as PhoneCall from command line, then send out error
+            if(obj.getCaller().equals(calling.getCaller()) && obj.getCallee().equals(calling.getCallee())){
+                if(obj.getEndTimeString().equals(calling.getEndTimeString()) && obj.getStartTimeString().equals(calling.getStartTimeString())){
+                    return 1;
+                }
+            }
+        }
+
+        return 0;
     }
 }
