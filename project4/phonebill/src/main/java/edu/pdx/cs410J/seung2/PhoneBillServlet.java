@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 /**
  * This servlet ultimately provides a REST API for working with an
@@ -20,7 +18,7 @@ import java.util.Date;
  */
 public class PhoneBillServlet extends HttpServlet
 {
-    static PhoneBill bill = new PhoneBill();
+    private final Map<String, PhoneBill> billMap = new HashMap<>();
 
     private static String CUSTOMER_PARA = "customer";
     private static String CALLER_PARA = "caller";
@@ -43,11 +41,15 @@ public class PhoneBillServlet extends HttpServlet
         String startT = getParameter(START_PARA, request);
         String endT = getParameter(END_PARA, request);
 
+        if(customerName == null){
+            missingRequiredParameter(response, "customer name");
+            return;
+        }
         if(startT == null && endT == null) {
-            writeAllPhoneBillPretty(response);
+            writeAllPhoneBillPretty(customerName, response);
         }
         else if(startT != null && endT != null){
-            writeSearchPhoneBillPretty(startT, endT, response);
+            writeSearchPhoneBillPretty(customerName, startT, endT, response);
         }
         else{
             missingRequiredParameter(response, "one of dates");
@@ -95,14 +97,6 @@ public class PhoneBillServlet extends HttpServlet
             return;
         }
 
-        if(bill.getCustomer() == null){
-            bill.setCustomer(customerName.split(" "));
-        }
-        else if(!bill.getCustomer().equals(customerName)){
-            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer name does not match");
-            return;
-        }
-
         String[] startDate = sDate.split(" ");
         String[] endDate = eDate.split(" ");
 
@@ -111,7 +105,19 @@ public class PhoneBillServlet extends HttpServlet
 
         PhoneCall call = new PhoneCall(callerNum, calleeNum, Starting, Ending);
 
-        bill.addPhoneCall(call);
+        boolean checkContain = this.billMap.containsKey(customerName);
+
+        if(!checkContain) {
+            PhoneBill bill = new PhoneBill();
+
+            bill.setCustomer(customerName.split(" "));
+            bill.addPhoneCall(call);
+
+            this.billMap.put(customerName, bill);
+        }
+        else{
+            this.billMap.get(customerName).addPhoneCall(call);
+        }
 
         response.setStatus( HttpServletResponse.SC_OK);
     }
@@ -125,7 +131,7 @@ public class PhoneBillServlet extends HttpServlet
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
 
-        this.bill.getPhoneCalls().clear();
+        this.billMap.clear();
 
         PrintWriter pw = response.getWriter();
         pw.println(Messages.allPhoneCallListDeleted());
@@ -151,11 +157,19 @@ public class PhoneBillServlet extends HttpServlet
      * Writes all of the dictionary entries to the HTTP response.
      *
      * The text of the message is formatted with
-     * {@link Messages#formatPrettyBill(PrintWriter, java.util.Collection<PhoneCall>)}
+     * {@link Messages#formatPrettyBill(PrintWriter, String name, java.util.Collection<PhoneCall>)}
      */
-    private void writeAllPhoneBillPretty(HttpServletResponse response ) throws IOException
+    private void writeAllPhoneBillPretty(String name, HttpServletResponse response ) throws IOException
     {
         PrintWriter pw = response.getWriter();
+
+        PhoneBill bill = billMap.get(name);
+
+        if(bill == null){
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer does not exist");
+            return;
+        }
+
         Messages.formatPrettyBill(pw, bill.getCustomer(), bill.getPhoneCalls());
 
         pw.flush();
@@ -163,9 +177,17 @@ public class PhoneBillServlet extends HttpServlet
         response.setStatus( HttpServletResponse.SC_OK );
     }
 
-    private void writeSearchPhoneBillPretty(String start, String end, HttpServletResponse response) throws IOException
+    private void writeSearchPhoneBillPretty(String name, String start, String end, HttpServletResponse response) throws IOException
     {
         PrintWriter pw = response.getWriter();
+
+        PhoneBill bill = billMap.get(name);
+
+        if(bill == null){
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer does not exist");
+            return;
+        }
+        
         Date startT = null;
         Date endT = null;
 

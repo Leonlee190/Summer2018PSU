@@ -59,8 +59,13 @@ public class Project4 {
                     System.exit(1);
                 }
 
-                if(args.length == (i+2)){
+                if(args.length == (i+3)){
+                    String name = args[i+2];
                     break;
+                }
+                else if(args.length == (i + 3)){
+                    System.err.println(MISSING_ARGS);
+                    System.exit(1);
                 }
 
                 i++;
@@ -145,7 +150,8 @@ public class Project4 {
                 }
             }
         }catch(IOException e){
-            e.printStackTrace();
+            System.err.println("Connection error");
+            System.exit(1);
         }
 
         System.exit(0);
