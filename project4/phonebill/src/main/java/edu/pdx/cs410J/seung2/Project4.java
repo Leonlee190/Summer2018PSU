@@ -73,7 +73,6 @@ public class Project4 {
             }
             else if(args[i].equals("-search")){
                 search = 1;
-                i++;
             }
             else if((args.length - i) == 7){
                 name = args[i];
@@ -83,6 +82,7 @@ public class Project4 {
                 String eDate = args[i+4];
                 String eTime = args[i+5];
                 String eAP = args[i+6];
+                i+=6;
 
                 start = initDate(sDate, sTime, sAP);
                 end = initDate(eDate, eTime, eAP);
