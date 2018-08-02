@@ -43,14 +43,6 @@ public class PhoneBillServlet extends HttpServlet
         String startT = getParameter(START_PARA, request);
         String endT = getParameter(END_PARA, request);
 
-        if(bill.getCustomer() == null){
-            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Empty PhoneBill");
-            return;
-        }
-        else if(!bill.getCustomer().equals(customerName)){
-            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer name does not match");
-            return;
-        }
         if(startT == null && endT == null) {
             writeAllPhoneBillPretty(response);
         }
