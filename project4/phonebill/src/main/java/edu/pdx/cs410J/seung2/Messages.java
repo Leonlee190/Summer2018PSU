@@ -15,7 +15,7 @@ public class Messages
 {
     public static String formatCallCount(int count, String name)
     {
-        return String.format( "%s has %d PhoneCalls in the list", name, count);
+        return String.format( "%s has %d PhoneCalls in the list\n", name, count);
     }
 
     public static String formatPrettyCall(PhoneCall call)
@@ -59,7 +59,7 @@ public class Messages
 
         String[] feeder = new String[4];
 
-        for (int i = 1; i < lines.length; i+=9) {
+        for (int i = 2; i < lines.length; i+=9) {
             feeder[0] = lines[i];
             feeder[1] = lines[i+1];
             feeder[2] = lines[i+2];
@@ -120,7 +120,7 @@ public class Messages
 
         String[] feeder = new String[4];
 
-        for (int i = 1; i < lines.length; i+=9) {
+        for (int i = 2; i < lines.length; i+=9) {
             feeder[0] = lines[i];
             feeder[1] = lines[i+1];
             feeder[2] = lines[i+2];

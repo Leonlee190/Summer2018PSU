@@ -31,7 +31,7 @@ public class Project4 {
     public static String portNum = null;
     static int print = 0;
     static int search = 0;
-    static String name;
+    static String name = null;
 
     public static void main(String... args) {
         PhoneBill bill = null;
@@ -74,25 +74,24 @@ public class Project4 {
             else if(args[i].equals("-search")){
                 search = 1;
                 i++;
+            }
+            else if((args.length - i) == 7){
+                name = args[i];
+                String sDate = args[i+1];
+                String sTime = args[i+2];
+                String sAP = args[i+3];
+                String eDate = args[i+4];
+                String eTime = args[i+5];
+                String eAP = args[i+6];
 
-                if((args.length - i) < 9){
-                    name = args[i];
-                    String sDate = args[i+1];
-                    String sTime = args[i+2];
-                    String sAP = args[i+3];
-                    String eDate = args[i+4];
-                    String eTime = args[i+5];
-                    String eAP = args[i+6];
+                start = initDate(sDate, sTime, sAP);
+                end = initDate(eDate, eTime, eAP);
+                checkTimeOrder(start, end);
 
-                    start = initDate(sDate, sTime, sAP);
-                    end = initDate(eDate, eTime, eAP);
-                    checkTimeOrder(start, end);
+                bill = new PhoneBill();
+                bill.setCustomer(name.split(" "));
 
-                    bill = new PhoneBill();
-                    bill.setCustomer(name.split(" "));
-
-                    break;
-                }
+                break;
             }
             else if((args.length - i) == 9){
                 name = args[i];
@@ -151,7 +150,7 @@ public class Project4 {
                 }
             }
         }catch(IOException e){
-            System.err.println("Connection error");
+            System.err.println("Connection Error!");
             System.exit(1);
         }
 
