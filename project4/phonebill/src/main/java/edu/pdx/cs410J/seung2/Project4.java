@@ -82,6 +82,9 @@ public class Project4 {
                     end = initDate(eDate, eTime, eAP);
                     checkTimeOrder(start, end);
 
+                    bill = new PhoneBill();
+                    bill.setCustomer(name.split(" "));
+
                     break;
                 }
             }
@@ -127,7 +130,7 @@ public class Project4 {
             }
             else{
                 if(search == 0) {
-                    Collection<PhoneCall> temp = client.getAllPhoneCalls(bill.getCustomer());
+                    Collection<PhoneCall> temp = client.getAllPhoneCalls();
                     StringWriter sw = new StringWriter();
                     Messages.formatPrettyBill(new PrintWriter(sw, true), temp);
                     String msg = sw.toString();
