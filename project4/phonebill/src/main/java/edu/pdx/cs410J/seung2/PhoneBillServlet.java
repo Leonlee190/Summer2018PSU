@@ -156,7 +156,7 @@ public class PhoneBillServlet extends HttpServlet
     private void writeAllPhoneBillPretty(HttpServletResponse response ) throws IOException
     {
         PrintWriter pw = response.getWriter();
-        Messages.formatPrettyBill(pw, bill.getPhoneCalls());
+        Messages.formatPrettyBill(pw, bill.getCustomer(), bill.getPhoneCalls());
 
         pw.flush();
 
@@ -189,7 +189,7 @@ public class PhoneBillServlet extends HttpServlet
             }
         }
 
-        Messages.formatPrettyBill(pw, temp.getPhoneCalls());
+        Messages.formatPrettyBill(pw, temp.getCustomer() ,temp.getPhoneCalls());
 
         pw.flush();
 

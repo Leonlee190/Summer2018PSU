@@ -132,14 +132,14 @@ public class Project4 {
                 if(search == 0) {
                     Collection<PhoneCall> temp = client.getAllPhoneCalls();
                     StringWriter sw = new StringWriter();
-                    Messages.formatPrettyBill(new PrintWriter(sw, true), temp);
+                    Messages.formatPrettyBill(new PrintWriter(sw, true), "All collection",temp);
                     String msg = sw.toString();
                     System.out.println(msg);
                 }
                 else{
                     Collection<PhoneCall> temp = client.getSearchCalls(bill.getCustomer(), start, end);
                     StringWriter sw = new StringWriter();
-                    Messages.formatPrettyBill(new PrintWriter(sw, true), temp);
+                    Messages.formatPrettyBill(new PrintWriter(sw, true), "All searched",temp);
                     String msg = sw.toString();
                     System.out.println(msg);
                 }

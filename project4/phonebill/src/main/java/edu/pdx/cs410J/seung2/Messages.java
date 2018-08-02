@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
  */
 public class Messages
 {
-    public static String formatCallCount(int count )
+    public static String formatCallCount(int count, String name)
     {
-        return String.format( "%d PhoneCalls in the list", count );
+        return String.format( "%s has %d PhoneCalls in the list", name, count);
     }
 
     public static String formatPrettyCall(PhoneCall call)
@@ -44,8 +44,8 @@ public class Messages
         return "All PhoneCall entries have been deleted";
     }
 
-    public static void formatPrettyBill(PrintWriter pw, Collection<PhoneCall> calls) {
-        pw.println(Messages.formatCallCount(calls.size()));
+    public static void formatPrettyBill(PrintWriter pw, String name, Collection<PhoneCall> calls) {
+        pw.println(Messages.formatCallCount(calls.size(), name));
 
         for (PhoneCall call : calls) {
             pw.println(Messages.formatPrettyCall(call));
