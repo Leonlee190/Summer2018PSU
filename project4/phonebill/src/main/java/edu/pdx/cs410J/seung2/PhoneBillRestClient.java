@@ -37,8 +37,8 @@ public class PhoneBillRestClient extends HttpRequestHelper
     /**
      * Returns all dictionary entries from the server
      */
-    public Collection<PhoneCall> getAllPhoneCalls() throws IOException {
-      Response response = get(this.url);
+    public Collection<PhoneCall> getAllPhoneCalls(String name) throws IOException {
+      Response response = get(this.url, "customer", name);
       return Messages.parsePhoneBill(response.getContent());
     }
 

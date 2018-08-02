@@ -31,6 +31,7 @@ public class Project4 {
     public static String portNum = null;
     static int print = 0;
     static int search = 0;
+    static String name;
 
     public static void main(String... args) {
         PhoneBill bill = null;
@@ -60,7 +61,7 @@ public class Project4 {
                 }
 
                 if(args.length == (i+3)){
-                    String name = args[i+2];
+                    name = args[i+2];
                     break;
                 }
                 else if(args.length == (i + 3)){
@@ -75,7 +76,7 @@ public class Project4 {
                 i++;
 
                 if((args.length - i) < 9){
-                    String name = args[i];
+                    name = args[i];
                     String sDate = args[i+1];
                     String sTime = args[i+2];
                     String sAP = args[i+3];
@@ -94,7 +95,7 @@ public class Project4 {
                 }
             }
             else if((args.length - i) == 9){
-                String name = args[i];
+                name = args[i];
                 String caller = args[i+1];
                 String callee = args[i+2];
                 String sDate = args[i+3];
@@ -135,16 +136,16 @@ public class Project4 {
             }
             else{
                 if(search == 0) {
-                    Collection<PhoneCall> temp = client.getAllPhoneCalls();
+                    Collection<PhoneCall> temp = client.getAllPhoneCalls(name);
                     StringWriter sw = new StringWriter();
-                    Messages.formatPrettyBill(new PrintWriter(sw, true), "All collection",temp);
+                    Messages.formatPrettyBill(new PrintWriter(sw, true), "All list for " + name,temp);
                     String msg = sw.toString();
                     System.out.println(msg);
                 }
                 else{
                     Collection<PhoneCall> temp = client.getSearchCalls(bill.getCustomer(), start, end);
                     StringWriter sw = new StringWriter();
-                    Messages.formatPrettyBill(new PrintWriter(sw, true), "All searched",temp);
+                    Messages.formatPrettyBill(new PrintWriter(sw, true), "Searched list for " + name,temp);
                     String msg = sw.toString();
                     System.out.println(msg);
                 }

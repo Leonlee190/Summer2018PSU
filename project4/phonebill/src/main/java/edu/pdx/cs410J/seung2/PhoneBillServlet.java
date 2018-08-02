@@ -170,7 +170,7 @@ public class PhoneBillServlet extends HttpServlet
             return;
         }
 
-        Messages.formatPrettyBill(pw, bill.getCustomer(), bill.getPhoneCalls());
+        Messages.formatPrettyBill(pw, name, bill.getPhoneCalls());
 
         pw.flush();
 
@@ -187,7 +187,7 @@ public class PhoneBillServlet extends HttpServlet
             response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer does not exist");
             return;
         }
-        
+
         Date startT = null;
         Date endT = null;
 
@@ -211,7 +211,7 @@ public class PhoneBillServlet extends HttpServlet
             }
         }
 
-        Messages.formatPrettyBill(pw, temp.getCustomer() ,temp.getPhoneCalls());
+        Messages.formatPrettyBill(pw, name ,temp.getPhoneCalls());
 
         pw.flush();
 
