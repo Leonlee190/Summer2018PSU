@@ -13,13 +13,15 @@ import java.util.*;
 /**
  * This servlet ultimately provides a REST API for working with an
  * <code>PhoneBill</code>.  However, in its current state, it is an example
- * of how to use HTTP and Java servlets to store simple dictionary of words
- * and their definitions.
+ * of how to use HTTP and Java servlets to store Map of PhoneBill and
+ * Collection of PhoneCalls within that PhoneBill
  */
 public class PhoneBillServlet extends HttpServlet
 {
+    // Map collection to store all PhoneBills
     private final Map<String, PhoneBill> billMap = new HashMap<>();
 
+    // Parameter names
     private static String CUSTOMER_PARA = "customer";
     private static String CALLER_PARA = "caller";
     private static String CALLEE_PARA = "callee";
@@ -27,27 +29,31 @@ public class PhoneBillServlet extends HttpServlet
     private static String END_PARA = "endTime";
 
     /**
-     * Handles an HTTP GET request from a client by writing the definition of the
-     * word specified in the "word" HTTP parameter to the HTTP response.  If the
-     * "word" parameter is not specified, all of the entries in the dictionary
-     * are written to the HTTP response.
+     * Handles an HTTP GET request from a client by retrieving PhoneBill data through
+     * word specified in the "customer" HTTP parameter to the HTTP response.  If it
+     * has empty time parameter then all of the PhoneBill associated with the name
+     * are written to the HTTP response. else if time is there then search for that time interval.
      */
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException
     {
         response.setContentType( "text/plain" );
 
+        // Retrieve parameters
         String customerName = getParameter(CUSTOMER_PARA, request );
         String startT = getParameter(START_PARA, request);
         String endT = getParameter(END_PARA, request);
 
+        // If customer name wasn't passed by
         if(customerName == null){
             missingRequiredParameter(response, "customer name");
             return;
         }
+        // If no time data then write all
         if(startT == null && endT == null) {
             writeAllPhoneBillPretty(customerName, response);
         }
+        // If time data exist then use that for search
         else if(startT != null && endT != null){
             writeSearchPhoneBillPretty(customerName, startT, endT, response);
         }
@@ -58,8 +64,8 @@ public class PhoneBillServlet extends HttpServlet
     }
 
     /**
-     * Handles an HTTP POST request by storing the dictionary entry for the
-     * "word" and "definition" request parameters.  It writes the dictionary
+     * Handles an HTTP POST request by storing the PhoneBill data in the map
+     * via using the customer parameter as the key.  It writes the initialized PhoneBill
      * entry to the HTTP response.
      */
     @Override
@@ -67,6 +73,7 @@ public class PhoneBillServlet extends HttpServlet
     {
         response.setContentType( "text/plain" );
 
+        // Retrieve and check error for all parameter
         String customerName = getParameter(CUSTOMER_PARA, request );
         if (customerName == null) {
             missingRequiredParameter(response, CUSTOMER_PARA);
@@ -97,6 +104,7 @@ public class PhoneBillServlet extends HttpServlet
             return;
         }
 
+        // Initialize PhoneCall with the retrieved parameter
         String[] startDate = sDate.split(" ");
         String[] endDate = eDate.split(" ");
 
@@ -105,8 +113,10 @@ public class PhoneBillServlet extends HttpServlet
 
         PhoneCall call = new PhoneCall(callerNum, calleeNum, Starting, Ending);
 
+        // Check if the customer entry already exists
         boolean checkContain = this.billMap.containsKey(customerName);
 
+        // if it doesn't then make new and add
         if(!checkContain) {
             PhoneBill bill = new PhoneBill();
 
@@ -115,6 +125,7 @@ public class PhoneBillServlet extends HttpServlet
 
             this.billMap.put(customerName, bill);
         }
+        // if it does then check for duplicate PhoneCall and add
         else{
             int checkDupli = Project4.checkPrettyCallDupli(this.billMap.get(customerName).getPhoneCalls(), call);
             if(checkDupli == 1){
@@ -128,9 +139,7 @@ public class PhoneBillServlet extends HttpServlet
     }
 
     /**
-     * Handles an HTTP DELETE request by removing all dictionary entries.  This
-     * behavior is exposed for testing purposes only.  It's probably not
-     * something that you'd want a real application to expose.
+     * Handles an HTTP DELETE request by removing all PhoneBill
      */
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -159,7 +168,10 @@ public class PhoneBillServlet extends HttpServlet
     }
 
     /**
-     * Writes all of the dictionary entries to the HTTP response.
+     * Writes all of the corresponding PhoneBill's call collection to the HTTP response.
+     *
+     * @param name
+     *          name of the customer
      *
      * The text of the message is formatted with
      * {@link Messages#formatPrettyBill(PrintWriter, String name, java.util.Collection<PhoneCall>)}
@@ -168,13 +180,16 @@ public class PhoneBillServlet extends HttpServlet
     {
         PrintWriter pw = response.getWriter();
 
+        // Retrieve the PhoneBill with customer name
         PhoneBill bill = billMap.get(name);
 
+        // If the bill doesn't exist then it's an error
         if(bill == null){
             response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Customer does not exist");
             return;
         }
 
+        // Use Messages to export data
         Messages.formatPrettyBill(pw, name, bill.getPhoneCalls());
 
         pw.flush();
@@ -182,6 +197,16 @@ public class PhoneBillServlet extends HttpServlet
         response.setStatus( HttpServletResponse.SC_OK );
     }
 
+    /**
+     * Search and compare all the data corresponding with the customer's name and export it
+     *
+     * @param name
+     *          Name of the customer
+     * @param start
+     *          Comparison date for start
+     * @param end
+     *          Comparison date for end
+     */
     private void writeSearchPhoneBillPretty(String name, String start, String end, HttpServletResponse response) throws IOException
     {
         PrintWriter pw = response.getWriter();
@@ -193,6 +218,7 @@ public class PhoneBillServlet extends HttpServlet
             return;
         }
 
+        // Initialize Date value with the given String
         Date startT = null;
         Date endT = null;
 
@@ -205,17 +231,20 @@ public class PhoneBillServlet extends HttpServlet
             return;
         }
 
+        // Create collection to retrieve
         Collection<PhoneCall> billcall = bill.getPhoneCalls();
 
         PhoneBill temp = new PhoneBill();
         temp.setCustomer(bill.getCustomer().split(" "));
 
+        // Evaluate and compare with the given search comparison
         for(PhoneCall call : billcall){
             if(call.getStartTime().getTime() >= startT.getTime() && call.getEndTime().getTime() <= endT.getTime()){
                 temp.addPhoneCall(call);
             }
         }
 
+        // Export it via Message class's formatPrettyBill method
         Messages.formatPrettyBill(pw, name ,temp.getPhoneCalls());
 
         pw.flush();

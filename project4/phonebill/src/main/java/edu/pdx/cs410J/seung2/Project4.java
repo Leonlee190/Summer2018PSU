@@ -28,6 +28,8 @@ public class Project4 {
             "\n    -README : Prints a README for this project and exits\n          -> Which you have currently!";
 
     public static final String MISSING_ARGS = "Missing command line arguments";
+
+    // Parse variables
     public static String hostName = null;
     public static String portNum = null;
     static int print = 0;
@@ -56,11 +58,13 @@ public class Project4 {
                 portNum = args[i + 1];
                 boolean intCheck = isInt(portNum);
 
+                // Check if the port number is valid
                 if(!intCheck){
                     System.err.println("Port number isn't an integer");
                     System.exit(1);
                 }
 
+                // If it's just with customer name then break
                 if(args.length == (i+3)){
                     name = args[i+2];
                     break;
@@ -71,6 +75,8 @@ public class Project4 {
             else if(args[i].equals("-search")){
                 search = 1;
             }
+
+            // If it's customer name / start time / end time format
             else if((args.length - i) == 7){
                 name = args[i];
                 String sDate = args[i+1];
@@ -89,6 +95,8 @@ public class Project4 {
 
                 break;
             }
+
+            // If it's full argument
             else if((args.length - i) == 9){
                 name = args[i];
                 String caller = args[i+1];
@@ -116,29 +124,40 @@ public class Project4 {
             }
         }
 
+        // If print option was there
         if(print == 1){
             System.out.println(call.toString());
         }
 
         int port = Integer.parseInt(portNum);
 
+        // Set up client
         PhoneBillRestClient client = new PhoneBillRestClient(hostName, port);
 
         try {
+            // POST
+            // Call was initialized with full argument then add
             if(call != null) {
                 client.addPhoneCall(bill.getCustomer(), call);
             }
+            // GET
             else{
+                // If no search option
                 if(search == 0) {
+                    // Retrieve the data via getAllPhoneCalls method
                     Collection<PhoneCall> temp = client.getAllPhoneCalls(name);
                     StringWriter sw = new StringWriter();
+                    // Print it out
                     Messages.formatPrettyBill(new PrintWriter(sw, true), "All list for " + name,temp);
                     String msg = sw.toString();
                     System.out.println(msg);
                 }
+                // If search option was set
                 else{
+                    // Retrieve the data via getSearchCalls method
                     Collection<PhoneCall> temp = client.getSearchCalls(bill.getCustomer(), start, end);
                     StringWriter sw = new StringWriter();
+                    // Print it out
                     Messages.formatPrettyBill(new PrintWriter(sw, true), "Searched list for " + name,temp);
                     String msg = sw.toString();
                     System.out.println(msg);
@@ -165,6 +184,12 @@ public class Project4 {
         }
     }
 
+    /**
+     * Use System.err to print out the error message
+     *
+     * @param message
+     *          Message of error
+     */
     private static void error( String message )
     {
         PrintStream err = System.err;
@@ -432,6 +457,14 @@ public class Project4 {
         return date;
     }
 
+    /**
+     * Check if start time starts before end time
+     *
+     * @param start
+     *          Starting time value
+     * @param end
+     *          Ending time value
+     */
     public static void checkTimeOrder(Date start, Date end){
         if(start.getTime() > end.getTime()){
             System.err.println("Start time starts latter than end time");
