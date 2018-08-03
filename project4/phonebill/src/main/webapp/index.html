@@ -28,21 +28,28 @@
 
 <div>
     <form method="get" action="calls">
-        List all dictionary entries <input type="submit" value="Submit"/>
+        List all PhoneBill entries <input name="customer" type="text" size="10" title="customer"/>
+        <input type="submit" value="Submit"/>
     </form>
 </div>
 
 <div>
     <form method="get" action="calls">
-        List definition for word <input name="word" type="text" size="10" title="key"/>
+        Search for PhoneCall <input name="customer" type="text" size="10" title="customer"/>
+        <input name="startTime" type="text" size="100" title="startTime"/>
+        <input name="endTime" type="text" size="100" title="endTime"/>
+
         <input type="submit" value="Submit"/>
     </form>
 </div>
 
 <div>
     <form method="post" action="calls">
-        Create a dictionary entry <input name="word" type="text" size="10" title="word"/> :
-        <input name="definition" type="text" size="100" title="definition"/>
+        Create and add PhoneCall <input name="customer" type="text" size="10" title="customer"/>
+        <input name="caller" type="text" size="100" title="caller"/>
+        <input name="callee" type="text" size="100" title="caller"/>
+        <input name="startTime" type="text" size="100" title="startTime"/>
+        <input name="endTime" type="text" size="100" title="endTime"/>
         <input type="submit" value="Submit"/>
     </form>
 </div>
