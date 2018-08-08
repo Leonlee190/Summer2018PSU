@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven 3.5.4
+Built-By: seung2
+Build-Jdk: 10.0.1
+Implementation-Title: Phone Bill GWT Application
+Implementation-Version: Summer2018
+Implementation-Vendor-Id: edu.pdx.cs410J.seung2
+Implementation-Vendor: Portland State University
+Implementation-URL: http://www.cs.pdx.edu/~whitlock/gwt-parent/phonebi
+ ll-gwt
+Built-From-Branch: master
+Built-From-Revision: 98c6ad07d4d4d77d522f991f607bac3614e42344
+Built-On: 2018-08-08T06:26:01.537-0700
+
